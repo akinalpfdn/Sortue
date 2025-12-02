@@ -76,7 +76,7 @@ struct GameView: View {
             
             if vm.status == .won {
                 WinOverlay(
-                    onReplay: { vm.startNewGame() },
+                    onReplay: { vm.startNewGame(preserveColors: true) },
                     onNext: {
                         let nextRaw = (vm.difficulty.rawValue + 1) % Difficulty.allCases.count
                         vm.startNewGame(difficulty: Difficulty(rawValue: nextRaw))

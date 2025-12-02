@@ -11,13 +11,15 @@ class GameViewModel: ObservableObject {
     private var shuffleTask: Task<Void, Never>?
     private var winTask: Task<Void, Never>?
     
+    private var currentCorners: (tl: RGBData, tr: RGBData, bl: RGBData, br: RGBData)?
+    
     var gridSize: (w: Int, h: Int) { difficulty.gridSize }
     
     init() {
         startNewGame()
     }
     
-    func startNewGame(difficulty: Difficulty? = nil) {
+    func startNewGame(difficulty: Difficulty? = nil, preserveColors: Bool = false) {
         if let d = difficulty { self.difficulty = d }
         
         shuffleTask?.cancel()
@@ -29,12 +31,19 @@ class GameViewModel: ObservableObject {
         let (w, h) = gridSize
         
         // 1. Generate corners
-        let corners = (
-            tl: RGBData.random,
-            tr: RGBData.random,
-            bl: RGBData.random,
-            br: RGBData.random
-        )
+        let corners: (tl: RGBData, tr: RGBData, bl: RGBData, br: RGBData)
+        
+        if preserveColors, let current = currentCorners {
+            corners = current
+        } else {
+            corners = (
+                tl: RGBData.random,
+                tr: RGBData.random,
+                bl: RGBData.random,
+                br: RGBData.random
+            )
+            currentCorners = corners
+        }
         
         var newTiles: [Tile] = []
         var idCounter = 0
