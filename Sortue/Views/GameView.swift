@@ -2,34 +2,23 @@ import SwiftUI
 
 struct GameView: View {
     @StateObject private var vm = GameViewModel()
-    @Namespace private var animation // For matchedGeometryEffect
+    @Namespace private var animation
     
     var body: some View {
         ZStack {
-            // Background
             Color.white.ignoresSafeArea()
-            
-            // Ambient Blobs
             AmbientBackground()
             
             VStack(spacing: 20) {
                 // Header
                 HStack {
                     StatusIcon(status: vm.status)
-                    
                     VStack(alignment: .leading) {
-                        Text("Sortue")
-                            .font(.title2)
-                            .fontWeight(.bold)
+                        Text("Sortue").font(.title2).fontWeight(.bold)
                         Text("\(vm.difficulty.title) • \(vm.moves) Moves")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                            .textCase(.uppercase)
+                            .font(.caption).foregroundColor(.gray).textCase(.uppercase)
                     }
-                    
                     Spacer()
-                    
-                    // Controls
                     HStack(spacing: 12) {
                         CircleButton(icon: "lightbulb.fill", action: vm.useHint)
                             .disabled(vm.status != .playing)
@@ -37,8 +26,7 @@ struct GameView: View {
                             .disabled(vm.status == .preview)
                     }
                 }
-                .padding(.horizontal)
-                .padding(.top)
+                .padding(.horizontal).padding(.top)
                 
                 Spacer()
                 
@@ -56,9 +44,7 @@ struct GameView: View {
                             gridWidth: vm.gridSize.w,
                             namespace: animation
                         )
-                        .onTapGesture {
-                            vm.selectTile(tile)
-                        }
+                        .onTapGesture { vm.selectTile(tile) }
                     }
                 }
                 .padding()
@@ -82,14 +68,12 @@ struct GameView: View {
                             )
                         }
                     }
-                    .padding(.horizontal)
-                    .padding(.bottom)
+                    .padding(.horizontal).padding(.bottom)
                 }
                 .disabled(vm.status == .preview)
             }
             .blur(radius: vm.status == .won ? 5 : 0)
             
-            // Win Modal Overlay
             if vm.status == .won {
                 WinOverlay(
                     onReplay: { vm.startNewGame() },
@@ -100,15 +84,12 @@ struct GameView: View {
                 )
             }
             
-            // Particle Effects for Win
             if vm.status == .animating {
                 ParticleSystem()
             }
         }
     }
 }
-
-// --- Subviews ---
 
 struct TileView: View {
     let tile: Tile
@@ -119,18 +100,16 @@ struct TileView: View {
     let namespace: Namespace.ID
     
     var body: some View {
-        // Calculate wave delay
         let x = index % gridWidth
         let y = index / gridWidth
         let delay = Double(x + y) * 0.05
         
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(tile.color)
+                .fill(tile.rgb.color) // Use the new .rgb.color accessor
                 .aspectRatio(1, contentMode: .fit)
                 .matchedGeometryEffect(id: tile.id, in: namespace)
                 .overlay(
-                    // Fixed Indicator dot
                     Group {
                         if tile.isFixed {
                             Circle()
@@ -140,13 +119,12 @@ struct TileView: View {
                     }
                 )
                 .overlay(
-                    // Selection Border
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(Color.white, lineWidth: isSelected ? 4 : 0)
                         .shadow(radius: isSelected ? 10 : 0)
                 )
                 .scaleEffect(isSelected ? 0.9 : 1.0)
-                .scaleEffect(isWon ? 1.1 : 1.0) // Wave pop
+                .scaleEffect(isWon ? 1.1 : 1.0)
                 .offset(y: isWon ? -10 : 0)
                 .animation(
                     isWon ? .spring(response: 0.4, dampingFraction: 0.5).delay(delay) : .default,
@@ -156,6 +134,7 @@ struct TileView: View {
     }
 }
 
+// ... Reuse the other subviews (WinOverlay, CircleButton, etc.) from previous output ...
 struct WinOverlay: View {
     let onReplay: () -> Void
     let onNext: () -> Void
@@ -203,8 +182,6 @@ struct WinOverlay: View {
         }
     }
 }
-
-// --- UI Helpers ---
 
 struct CircleButton: View {
     let icon: String
@@ -294,7 +271,6 @@ struct ParticleSystem: View {
                     var x = size.width / 2 + cos(Double(i) + now * 2) * 100
                     var y = size.height / 2 + sin(Double(i) + now * 3) * 100
                     
-                    // Simple random scatter logic visualizer
                     let offset = Double(i) * 20
                     x += cos(now + offset) * 50
                     y += sin(now + offset) * 50

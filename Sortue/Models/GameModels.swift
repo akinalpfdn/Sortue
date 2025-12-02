@@ -1,20 +1,38 @@
 import SwiftUI
 
-// Represents a single tile on the board
+// Raw RGB Data structure to ensure mathematical precision
+// We use this instead of SwiftUI.Color to avoid color space conversion issues
+struct RGBData: Equatable, Codable {
+    let r: Double
+    let g: Double
+    let b: Double
+    
+    // Helper to convert to SwiftUI Color for display
+    var color: Color {
+        Color(red: r, green: g, blue: b)
+    }
+    
+    // Helper to check similarity
+    func isSimilar(to other: RGBData) -> Bool {
+        let threshold = 0.05
+        return abs(r - other.r) < threshold &&
+               abs(g - other.g) < threshold &&
+               abs(b - other.b) < threshold
+    }
+}
+
 struct Tile: Identifiable, Equatable {
     let id: Int             // Unique ID
-    let correctId: Int      // The index where this tile SHOULD be
-    let color: Color        // The calculated gradient color
+    let correctId: Int      // The grid index where this tile SHOULD be
+    let rgb: RGBData        // The color data
     let isFixed: Bool       // Is this a corner anchor?
-    var currentIdx: Int     // Helper for sorting logic
+    var currentIdx: Int     // Logic helper
     
-    // For Equatable
     static func == (lhs: Tile, rhs: Tile) -> Bool {
         return lhs.id == rhs.id
     }
 }
 
-// Difficulty settings
 enum Difficulty: Int, CaseIterable, Identifiable {
     case relaxed = 0
     case balanced = 1
@@ -39,10 +57,9 @@ enum Difficulty: Int, CaseIterable, Identifiable {
     }
 }
 
-// Game Status State Machine
 enum GameStatus {
-    case preview    // Showing correct order
-    case playing    // User interacting
-    case animating  // Win animation playing
-    case won        // Modal showing
+    case preview
+    case playing
+    case animating
+    case won
 }
