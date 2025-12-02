@@ -68,7 +68,6 @@ struct GameView: View {
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
-                    .padding(.horizontal)
                     
                     Slider(
                         value: Binding(
@@ -83,9 +82,12 @@ struct GameView: View {
                         in: 4...12,
                         step: 1
                     )
-                    .accentColor(.black)
-                    .padding(.horizontal)
+                    .accentColor(.primary)
                 }
+                .padding(16)
+                .background(.white.opacity(0))
+                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                .padding(.horizontal)
                 .padding(.bottom)
             }
             .blur(radius: vm.status == .won ? 5 : 0)
@@ -286,24 +288,7 @@ struct CircleButton: View {
     }
 }
 
-struct CapsuleButton: View {
-    let text: String
-    let isSelected: Bool
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            Text(text)
-                .font(.system(size: 14, weight: .medium))
-                .padding(.horizontal, 20)
-                .padding(.vertical, 10)
-                .foregroundColor(isSelected ? .white : .primary)
-                .background(isSelected ? Color.black : Color.white)
-                .clipShape(Capsule())
-                .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
-        }
-    }
-}
+
 
 struct StatusIcon: View {
     let status: GameStatus
