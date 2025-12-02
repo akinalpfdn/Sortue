@@ -31,11 +31,11 @@ struct RateOverlay: View {
                 // Typography
                 VStack(spacing: 8) {
                     Text("Enjoying Sortue?")
-                        .font(.system(size: 28, weight: .medium, design: .serif))
+                        .font(.system(size: 28, weight: .semibold, design: .default))
                         .foregroundStyle(.primary)
                     
                     Text("If you enjoy using Sortue, would you mind taking a moment to rate it and help me? Thanks for your support!")
-                        .font(.system(size: 16, weight: .regular, design: .default))
+                        .font(.system(size: 16, weight: .medium, design: .default))
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 10)

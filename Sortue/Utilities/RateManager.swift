@@ -4,7 +4,7 @@ import Combine
 class RateManager: ObservableObject {
     static let shared = RateManager()
     
-    @AppStorage("app_launch_count") private var launchCount: Int = 9
+    @AppStorage("app_launch_count") private var launchCount: Int = 0
     @AppStorage("next_review_threshold") private var nextReviewThreshold: Int = 10
     
     @Published var showRatePopup: Bool = false

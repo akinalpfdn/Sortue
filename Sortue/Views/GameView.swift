@@ -3,6 +3,7 @@ import SwiftUI
 struct GameView: View {
     @StateObject private var vm = GameViewModel()
     @Namespace private var animation
+    @State private var showAbout = false
     
     var body: some View {
         ZStack {
@@ -12,7 +13,11 @@ struct GameView: View {
             VStack(spacing: 20) {
                 // Header
                 HStack {
-                    StatusIcon(status: vm.status)
+                    Button(action: { withAnimation { showAbout = true } }) {
+                        StatusIcon(status: vm.status)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
                     VStack(alignment: .leading) {
                         Text("Sortue").font(.title2).fontWeight(.bold)
                         Text("Level \(vm.currentLevel) • \(vm.gridDimension)x\(vm.gridDimension) • \(vm.moves) Moves")
@@ -90,7 +95,7 @@ struct GameView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
             }
-            .blur(radius: vm.status == .won ? 5 : 0)
+            .blur(radius: (vm.status == .won || showAbout) ? 5 : 0)
             
             if vm.status == .won {
                 WinOverlay(
@@ -100,6 +105,11 @@ struct GameView: View {
                         vm.startNewGame(dimension: nextDim)
                     }
                 )
+            }
+            
+            if showAbout {
+                AboutOverlay(onDismiss: { withAnimation { showAbout = false } })
+                    .zIndex(200)
             }
             
             if vm.status == .animating {
