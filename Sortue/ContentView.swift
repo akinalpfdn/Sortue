@@ -1,10 +1,19 @@
 import SwiftUI
-
 struct ContentView: View {
-    // This serves as the root container.
-    // You can add global navigation, splash screens, or tab bars here later.
+    @StateObject private var rateManager = RateManager.shared
+
     var body: some View {
-        GameView()
-            .transition(.opacity)
+        ZStack {
+            GameView()
+                .transition(.opacity)
+            
+            if rateManager.showRatePopup {
+                RateOverlay(
+                    onRate: rateManager.rateNow,
+                    onRemind: rateManager.remindMeLater
+                )
+                .zIndex(100) // Ensure it stays on top
+            }
+        }
     }
 }

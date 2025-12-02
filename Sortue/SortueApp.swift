@@ -8,6 +8,7 @@ struct SortueApp: App {
                 .preferredColorScheme(.light) // Force light mode for clean aesthetic
                 .onAppear {
                     AudioManager.shared.playBackgroundMusic()
+                    RateManager.shared.appDidLaunch()
                 }
         }
     }
