@@ -1,13 +1,23 @@
 import SwiftUI
 struct ContentView: View {
     @StateObject private var rateManager = RateManager.shared
+    @State private var showLanding = true
 
     var body: some View {
         ZStack {
-            GameView()
+            if showLanding {
+                LandingView(onPlay: {
+                    withAnimation { showLanding = false }
+                })
                 .transition(.opacity)
+                .zIndex(1)
+            } else {
+                GameView()
+                    .transition(.opacity)
+                    .zIndex(0)
+            }
             
-            if rateManager.showRatePopup {
+            if rateManager.showRatePopup && !showLanding {
                 RateOverlay(
                     onRate: rateManager.rateNow,
                     onRemind: rateManager.remindMeLater

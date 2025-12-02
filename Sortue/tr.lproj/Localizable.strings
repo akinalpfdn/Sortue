@@ -90,3 +90,9 @@
 "win_subtitle_softly_aligned" = "Yumuşakça hizalanmış.";
 "win_subtitle_vibrant_peace" = "Canlı huzur.";
 "win_subtitle_quietly_perfect" = "Sessizce mükemmel.";
+
+/* Landing Page */
+"landing_subtitle" = "Uyumu Geri Getir";
+"how_to_play_title" = "Nasıl Oynanır";
+"how_to_play_desc" = "Kareleri sürükleyip bırakarak mükemmel bir renk geçişi oluştur. Köşeler sabit rehberlerdir.";
+"start_game" = "Oyuna Başla";

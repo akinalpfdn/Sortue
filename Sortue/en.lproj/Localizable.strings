@@ -90,3 +90,9 @@
 "win_subtitle_softly_aligned" = "Softly aligned.";
 "win_subtitle_vibrant_peace" = "Vibrant peace.";
 "win_subtitle_quietly_perfect" = "Quietly perfect.";
+
+/* Landing Page */
+"landing_subtitle" = "Restore the Harmony";
+"how_to_play_title" = "How to Play";
+"how_to_play_desc" = "Drag and drop tiles to arrange them into a perfect color gradient. The corners are fixed guides.";
+"start_game" = "Start Game";
