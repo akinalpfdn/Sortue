@@ -8,6 +8,8 @@ class GameViewModel: ObservableObject {
     @Published var moves: Int = 0
     @Published var selectedTileId: Int? = nil
     
+    @Published var currentLevel: Int = 1
+    
     private var shuffleTask: Task<Void, Never>?
     private var winTask: Task<Void, Never>?
     
@@ -21,6 +23,9 @@ class GameViewModel: ObservableObject {
     
     func startNewGame(dimension: Int? = nil, preserveColors: Bool = false) {
         if let d = dimension { self.gridDimension = d }
+        
+        // Update level for the current dimension
+        self.currentLevel = UserDefaults.standard.integer(forKey: "level_count_\(gridDimension)") + 1
         
         shuffleTask?.cancel()
         winTask?.cancel()
@@ -171,6 +176,11 @@ class GameViewModel: ObservableObject {
             status = .animating
             let successFeedback = UINotificationFeedbackGenerator()
             successFeedback.notificationOccurred(.success)
+            
+            // Increment Level for this dimension
+            let key = "level_count_\(gridDimension)"
+            let currentWins = UserDefaults.standard.integer(forKey: key)
+            UserDefaults.standard.set(currentWins + 1, forKey: key)
             
             winTask = Task {
                 try? await Task.sleep(nanoseconds: 2_000_000_000)
