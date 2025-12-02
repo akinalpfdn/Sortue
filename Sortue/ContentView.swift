@@ -1,24 +1,10 @@
-//
-//  ContentView.swift
-//  Sortue
-//
-//  Created by Akinalp Fidan on 2.12.2025.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    // This serves as the root container.
+    // You can add global navigation, splash screens, or tab bars here later.
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        GameView()
+            .transition(.opacity)
     }
-}
-
-#Preview {
-    ContentView()
 }
