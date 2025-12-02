@@ -4,7 +4,7 @@ import Combine
 class GameViewModel: ObservableObject {
     @Published var tiles: [Tile] = []
     @Published var status: GameStatus = .preview
-    @Published var difficulty: Difficulty = .relaxed
+    @Published var gridDimension: Int = 4
     @Published var moves: Int = 0
     @Published var selectedTileId: Int? = nil
     
@@ -13,14 +13,14 @@ class GameViewModel: ObservableObject {
     
     private var currentCorners: (tl: RGBData, tr: RGBData, bl: RGBData, br: RGBData)?
     
-    var gridSize: (w: Int, h: Int) { difficulty.gridSize }
+    var gridSize: (w: Int, h: Int) { (gridDimension, gridDimension) }
     
     init() {
         startNewGame()
     }
     
-    func startNewGame(difficulty: Difficulty? = nil, preserveColors: Bool = false) {
-        if let d = difficulty { self.difficulty = d }
+    func startNewGame(dimension: Int? = nil, preserveColors: Bool = false) {
+        if let d = dimension { self.gridDimension = d }
         
         shuffleTask?.cancel()
         winTask?.cancel()

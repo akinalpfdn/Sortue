@@ -15,7 +15,7 @@ struct GameView: View {
                     StatusIcon(status: vm.status)
                     VStack(alignment: .leading) {
                         Text("Sortue").font(.title2).fontWeight(.bold)
-                        Text("\(vm.difficulty.title) • \(vm.moves) Moves")
+                        Text("\(vm.gridDimension)x\(vm.gridDimension) • \(vm.moves) Moves")
                             .font(.caption).foregroundColor(.gray).textCase(.uppercase)
                     }
                     Spacer()
@@ -57,19 +57,36 @@ struct GameView: View {
                 
                 Spacer()
                 
-                // Difficulty Selector
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 12) {
-                        ForEach(Difficulty.allCases) { diff in
-                            CapsuleButton(
-                                text: diff.title,
-                                isSelected: vm.difficulty == diff,
-                                action: { vm.startNewGame(difficulty: diff) }
-                            )
-                        }
+                // Grid Size Slider
+                VStack(spacing: 10) {
+                    HStack {
+                        Text("Grid Size")
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                        Spacer()
+                        Text("\(vm.gridDimension)x\(vm.gridDimension)")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
                     }
-                    .padding(.horizontal).padding(.bottom)
+                    .padding(.horizontal)
+                    
+                    Slider(
+                        value: Binding(
+                            get: { Double(vm.gridDimension) },
+                            set: { newValue in
+                                let newInt = Int(newValue)
+                                if newInt != vm.gridDimension {
+                                    vm.startNewGame(dimension: newInt)
+                                }
+                            }
+                        ),
+                        in: 4...12,
+                        step: 1
+                    )
+                    .accentColor(.black)
+                    .padding(.horizontal)
                 }
+                .padding(.bottom)
                 .disabled(vm.status == .preview)
             }
             .blur(radius: vm.status == .won ? 5 : 0)
@@ -78,8 +95,8 @@ struct GameView: View {
                 WinOverlay(
                     onReplay: { vm.startNewGame(preserveColors: true) },
                     onNext: {
-                        let nextRaw = (vm.difficulty.rawValue + 1) % Difficulty.allCases.count
-                        vm.startNewGame(difficulty: Difficulty(rawValue: nextRaw))
+                        let nextDim = min(vm.gridDimension + 1, 12)
+                        vm.startNewGame(dimension: nextDim)
                     }
                 )
             }
