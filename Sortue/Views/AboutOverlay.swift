@@ -25,21 +25,21 @@ struct AboutOverlay: View {
                 }
                 .padding(.top, 8)
                 
-                Text("Thanks for playing!")
+                Text("thanks_playing")
                     .font(.system(size: 28, weight: .bold, design: .default))
                     .foregroundStyle(.primary)
                 
                 VStack(spacing: 16) {
-                    Text("Hope you are enjoying the game.")
+                    Text("hope_enjoy")
                         .font(.body)
                     
-                    Text("I want to give you the simplest possible experience without any ads or monetization.")
+                    Text("simple_experience")
                         .font(.body)
                     
-                    Text("Please support me by rating and sharing the game.")
+                    Text("support_me")
                         .font(.body.weight(.medium))
                     // Credit
-                    Text("Huge thanks to Ka - Fa 1500 for the game melody.")
+                    Text("music_credit")
                         .font(.body)
                         .foregroundStyle(.primary)
                         .padding(.top, 8)
@@ -52,7 +52,7 @@ struct AboutOverlay: View {
                 
                 // Close Button
                 Button(action: onDismiss) {
-                    Text("Close")
+                    Text("close")
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)

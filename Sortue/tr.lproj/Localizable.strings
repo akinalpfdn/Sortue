@@ -1,0 +1,92 @@
+/* 
+  Localizable.strings
+  Sortue
+*/
+
+/* Game View */
+"level_display" = "Seviye %d • %dx%d • %d Hamle";
+"grid_size" = "Izgara Boyutu";
+"next_level" = "Sonraki Seviye";
+
+/* Rate Overlay */
+"enjoying_sortue" = "Sortue'yu sevdin mi?";
+"rate_message" = "Sortue'yu kullanmaktan keyif alıyorsan, bir dakikanı ayırıp oy vererek bana destek olur musun? Desteğin için teşekkürler!";
+"rate_now" = "Şimdi Oyla";
+"remind_later" = "Daha Sonra Hatırlat";
+
+/* About Overlay */
+"thanks_playing" = "Oynadığın için teşekkürler!";
+"hope_enjoy" = "Umarım oyundan keyif alıyorsundur.";
+"simple_experience" = "Sana reklamsız ve ücretsiz, en sade deneyimi sunmak istiyorum.";
+"support_me" = "Lütfen oy vererek ve paylaşarak beni destekle.";
+"music_credit" = "Oyun melodisi için Ka - Fa 1500'e sonsuz teşekkürler.";
+"close" = "Kapat";
+
+/* Win Titles */
+"win_title_divine" = "İlahi";
+"win_title_exquisite" = "Enfes";
+"win_title_radiant" = "Parlak";
+"win_title_sublime" = "Yüce";
+"win_title_flawless" = "Kusursuz";
+"win_title_brilliant" = "Muazzam";
+"win_title_zen" = "Zen";
+"win_title_perfect" = "Mükemmel";
+"win_title_harmony" = "Uyum";
+"win_title_masterpiece" = "Şaheser";
+"win_title_serene" = "Huzurlu";
+"win_title_complete" = "Tamamlandı";
+"win_title_elegant" = "Zarif";
+"win_title_sorted" = "Düzenli";
+"win_title_pure" = "Saf";
+"win_title_beautiful" = "Güzel";
+"win_title_tranquil" = "Sakin";
+"win_title_lovely" = "Harika";
+"win_title_splendid" = "Dengeli";
+"win_title_graceful" = "Akıcı";
+"win_title_harmonious" = "Uyumlu";
+"win_title_excellent" = "Mükemmel";
+"win_title_wonderful" = "Harika";
+"win_title_calming" = "Sakinleştirici";
+"win_title_peaceful" = "Huzur Dolu";
+"win_title_flowing" = "Akıcı";
+"win_title_gentle" = "Nazik";
+"win_title_smooth" = "Pürüzsüz";
+"win_title_balanced" = "Dengeli";
+"win_title_aligned" = "Hizalı";
+
+/* Win Subtitles */
+"win_subtitle_spectrum" = "Spektrum tamamlandı.";
+"win_subtitle_balance" = "Denge sağlandı.";
+"win_subtitle_vision" = "Bir düzen vizyonu.";
+"win_subtitle_colors" = "Renkler mükemmel hizalandı.";
+"win_subtitle_chaos" = "Kaostan düzene.";
+"win_subtitle_satisfying" = "Sadece tatmin edici.";
+"win_subtitle_peaceful" = "Huzurlu mükemmellik.";
+"win_subtitle_clarity" = "Bir netlik anı.";
+"win_subtitle_smooth" = "Pürüzsüz geçişler.";
+"win_subtitle_eye" = "Bunun için bir gözün var.";
+"win_subtitle_gradient" = "Gradyan ustalığı.";
+"win_subtitle_flow" = "Akış durumuna ulaşıldı.";
+"win_subtitle_tranquility" = "Mutlak huzur.";
+"win_subtitle_organized" = "Güzelce organize edildi.";
+"win_subtitle_rhythm" = "Ritim ve renk tonu.";
+"win_subtitle_harmony_restored" = "Uyum geri yüklendi.";
+"win_subtitle_peace" = "Bir barış anı.";
+"win_subtitle_sync" = "Renkler senkronize.";
+"win_subtitle_order" = "Düzen bulundu.";
+"win_subtitle_pure_satisfaction" = "Saf tatmin.";
+"win_subtitle_simply_delightful" = "Sadece zevkli.";
+"win_subtitle_gentle_success" = "Nazik bir başarı.";
+"win_subtitle_balance_achieved" = "Denge sağlandı.";
+"win_subtitle_smooth_perfection" = "Pürüzsüz mükemmellik.";
+"win_subtitle_calm_clear" = "Sakin ve berrak.";
+"win_subtitle_spectrum_flows" = "Spektrum akıyor.";
+"win_subtitle_relax_breathe" = "Rahatla ve nefes al.";
+"win_subtitle_well_sorted" = "İyi sıralanmış.";
+"win_subtitle_perfect_gradient" = "Mükemmel bir gradyan.";
+"win_subtitle_zen_achieved" = "Zen'e ulaşıldı.";
+"win_subtitle_flow_state_found" = "Akış hali bulundu.";
+"win_subtitle_nice_tidy" = "Hoş ve düzenli.";
+"win_subtitle_softly_aligned" = "Yumuşakça hizalanmış.";
+"win_subtitle_vibrant_peace" = "Canlı huzur.";
+"win_subtitle_quietly_perfect" = "Sessizce mükemmel.";

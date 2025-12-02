@@ -20,7 +20,7 @@ struct GameView: View {
                     
                     VStack(alignment: .leading) {
                         Text("Sortue").font(.title2).fontWeight(.bold)
-                        Text("Level \(vm.currentLevel) • \(vm.gridDimension)x\(vm.gridDimension) • \(vm.moves) Moves")
+                        Text(String(format: NSLocalizedString("level_display", comment: ""), vm.currentLevel, vm.gridDimension, vm.gridDimension, vm.moves))
                             .font(.caption).foregroundColor(.gray).textCase(.uppercase)
                     }
                     Spacer()
@@ -65,7 +65,7 @@ struct GameView: View {
                 // Grid Size Slider
                 VStack(spacing: 10) {
                     HStack {
-                        Text("Grid Size")
+                        Text("grid_size")
                             .font(.subheadline)
                             .fontWeight(.medium)
                         Spacer()
@@ -172,26 +172,9 @@ struct WinOverlay: View {
     @State private var subtitle: String = ""
     
     // Theme-based random selection
-    private let titles = [
-        "Divine", "Exquisite", "Radiant", "Sublime", "Flawless",
-        "Brilliant", "Zen", "Perfect", "Harmony", "Masterpiece",
-        "Serene", "Complete", "Elegant", "Sorted", "Pure","Beautiful", "Serene", "Perfect", "Sublime", "Radiant",
-        "Tranquil", "Lovely", "Splendid", "Graceful", "Harmonious",
-        "Excellent", "Wonderful", "Calming", "Peaceful", "Brilliant",
-        "Flowing", "Gentle", "Smooth", "Balanced", "Aligned"
-    ]
+    private let titles = WinMessages.titles
     
-    private let subtitles = [
-        "The spectrum is complete.", "Balance has been restored.", "A vision of order.",
-        "Colors aligned perfectly.", "Chaos into order.", "Simply satisfying.",
-        "Peaceful perfection.", "A moment of clarity.", "Smooth transitions.",
-        "You have an eye for this.", "Gradient mastery.", "Flow state achieved.",
-        "Absolute tranquility.", "Beautifully organized.", "Rhythm and hue.","Harmony restored.", "A moment of peace.", "Colors in sync.", "Order found.",
-        "Pure satisfaction.", "Simply delightful.", "A gentle success.", "Balance achieved.",
-        "Smooth perfection.", "Calm and clear.", "The spectrum flows.", "Relax and breathe.",
-        "Well sorted.", "A perfect gradient.", "Zen achieved.", "Flow state found.",
-        "Nice and tidy.", "Softly aligned.", "Vibrant peace.", "Quietly perfect."
-    ]
+    private let subtitles = WinMessages.subtitles
     
     
     var body: some View {
@@ -246,7 +229,7 @@ struct WinOverlay: View {
                     // Primary Action (Next)
                     Button(action: onNext) {
                         HStack {
-                            Text("Next Level")
+                            Text("next_level")
                                 .fontWeight(.semibold)
                             Image(systemName: "arrow.right")
                         }
@@ -275,8 +258,8 @@ struct WinOverlay: View {
         }
         .onAppear {
             // Randomize on appear
-            title = titles.randomElement() ?? "Divine"
-            subtitle = subtitles.randomElement() ?? "Harmony restored."
+            title = titles.randomElement() ?? titles[0]
+            subtitle = subtitles.randomElement() ?? subtitles[0]
         }
     }
 }

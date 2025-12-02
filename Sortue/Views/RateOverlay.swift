@@ -30,11 +30,11 @@ struct RateOverlay: View {
                 
                 // Typography
                 VStack(spacing: 8) {
-                    Text("Enjoying Sortue?")
+                    Text("enjoying_sortue")
                         .font(.system(size: 28, weight: .semibold, design: .default))
                         .foregroundStyle(.primary)
                     
-                    Text("If you enjoy using Sortue, would you mind taking a moment to rate it and help me? Thanks for your support!")
+                    Text("rate_message")
                         .font(.system(size: 16, weight: .medium, design: .default))
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
@@ -46,7 +46,7 @@ struct RateOverlay: View {
                     // Primary Action (Rate Now)
                     Button(action: onRate) {
                         HStack {
-                            Text("Rate Now")
+                            Text("rate_now")
                                 .fontWeight(.semibold)
                             Image(systemName: "heart.fill")
                         }
@@ -62,7 +62,7 @@ struct RateOverlay: View {
                     
                     // Secondary Action (Remind Me Later)
                     Button(action: onRemind) {
-                        Text("Remind Me Later")
+                        Text("remind_later")
                             .fontWeight(.medium)
                             .foregroundColor(.primary.opacity(0.6))
                             .frame(maxWidth: .infinity)

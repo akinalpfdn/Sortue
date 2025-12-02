@@ -1,0 +1,92 @@
+/* 
+  Localizable.strings
+  Sortue
+*/
+
+/* Game View */
+"level_display" = "Level %d • %dx%d • %d Moves";
+"grid_size" = "Grid Size";
+"next_level" = "Next Level";
+
+/* Rate Overlay */
+"enjoying_sortue" = "Enjoying Sortue?";
+"rate_message" = "If you enjoy using Sortue, would you mind taking a moment to rate it and help me? Thanks for your support!";
+"rate_now" = "Rate Now";
+"remind_later" = "Remind Me Later";
+
+/* About Overlay */
+"thanks_playing" = "Thanks for playing!";
+"hope_enjoy" = "Hope you are enjoying the game.";
+"simple_experience" = "I want to give you the simplest possible experience without any ads or monetization.";
+"support_me" = "Please support me by rating and sharing the game.";
+"music_credit" = "Huge thanks to Ka - Fa 1500 for the game melody.";
+"close" = "Close";
+
+/* Win Titles */
+"win_title_divine" = "Divine";
+"win_title_exquisite" = "Exquisite";
+"win_title_radiant" = "Radiant";
+"win_title_sublime" = "Sublime";
+"win_title_flawless" = "Flawless";
+"win_title_brilliant" = "Brilliant";
+"win_title_zen" = "Zen";
+"win_title_perfect" = "Perfect";
+"win_title_harmony" = "Harmony";
+"win_title_masterpiece" = "Masterpiece";
+"win_title_serene" = "Serene";
+"win_title_complete" = "Complete";
+"win_title_elegant" = "Elegant";
+"win_title_sorted" = "Sorted";
+"win_title_pure" = "Pure";
+"win_title_beautiful" = "Beautiful";
+"win_title_tranquil" = "Tranquil";
+"win_title_lovely" = "Lovely";
+"win_title_splendid" = "Splendid";
+"win_title_graceful" = "Graceful";
+"win_title_harmonious" = "Harmonious";
+"win_title_excellent" = "Excellent";
+"win_title_wonderful" = "Wonderful";
+"win_title_calming" = "Calming";
+"win_title_peaceful" = "Peaceful";
+"win_title_flowing" = "Flowing";
+"win_title_gentle" = "Gentle";
+"win_title_smooth" = "Smooth";
+"win_title_balanced" = "Balanced";
+"win_title_aligned" = "Aligned";
+
+/* Win Subtitles */
+"win_subtitle_spectrum" = "The spectrum is complete.";
+"win_subtitle_balance" = "Balance has been restored.";
+"win_subtitle_vision" = "A vision of order.";
+"win_subtitle_colors" = "Colors aligned perfectly.";
+"win_subtitle_chaos" = "Chaos into order.";
+"win_subtitle_satisfying" = "Simply satisfying.";
+"win_subtitle_peaceful" = "Peaceful perfection.";
+"win_subtitle_clarity" = "A moment of clarity.";
+"win_subtitle_smooth" = "Smooth transitions.";
+"win_subtitle_eye" = "You have an eye for this.";
+"win_subtitle_gradient" = "Gradient mastery.";
+"win_subtitle_flow" = "Flow state achieved.";
+"win_subtitle_tranquility" = "Absolute tranquility.";
+"win_subtitle_organized" = "Beautifully organized.";
+"win_subtitle_rhythm" = "Rhythm and hue.";
+"win_subtitle_harmony_restored" = "Harmony restored.";
+"win_subtitle_peace" = "A moment of peace.";
+"win_subtitle_sync" = "Colors in sync.";
+"win_subtitle_order" = "Order found.";
+"win_subtitle_pure_satisfaction" = "Pure satisfaction.";
+"win_subtitle_simply_delightful" = "Simply delightful.";
+"win_subtitle_gentle_success" = "A gentle success.";
+"win_subtitle_balance_achieved" = "Balance achieved.";
+"win_subtitle_smooth_perfection" = "Smooth perfection.";
+"win_subtitle_calm_clear" = "Calm and clear.";
+"win_subtitle_spectrum_flows" = "The spectrum flows.";
+"win_subtitle_relax_breathe" = "Relax and breathe.";
+"win_subtitle_well_sorted" = "Well sorted.";
+"win_subtitle_perfect_gradient" = "A perfect gradient.";
+"win_subtitle_zen_achieved" = "Zen achieved.";
+"win_subtitle_flow_state_found" = "Flow state found.";
+"win_subtitle_nice_tidy" = "Nice and tidy.";
+"win_subtitle_softly_aligned" = "Softly aligned.";
+"win_subtitle_vibrant_peace" = "Vibrant peace.";
+"win_subtitle_quietly_perfect" = "Quietly perfect.";
