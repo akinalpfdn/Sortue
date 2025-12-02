@@ -6,6 +6,9 @@ struct SortueApp: App {
         WindowGroup {
             ContentView()
                 .preferredColorScheme(.light) // Force light mode for clean aesthetic
+                .onAppear {
+                    AudioManager.shared.playBackgroundMusic()
+                }
         }
     }
 }
