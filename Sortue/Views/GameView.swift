@@ -76,7 +76,7 @@ struct GameView: View {
                             set: { newValue in
                                 let newInt = Int(newValue)
                                 if newInt != vm.gridDimension {
-                                    vm.startNewGame(dimension: newInt)
+                                    vm.startNewGame(dimension: newInt, preserveColors: true)
                                 }
                             }
                         ),
@@ -87,7 +87,6 @@ struct GameView: View {
                     .padding(.horizontal)
                 }
                 .padding(.bottom)
-                .disabled(vm.status == .preview)
             }
             .blur(radius: vm.status == .won ? 5 : 0)
             
