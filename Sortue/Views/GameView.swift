@@ -108,10 +108,7 @@ struct GameView: View {
             if vm.status == .won {
                 WinOverlay(
                     onReplay: { vm.startNewGame(preserveColors: true) },
-                    onNext: {
-                        let nextDim = min(vm.gridDimension + 1, 12)
-                        vm.startNewGame(dimension: nextDim)
-                    }
+                    onNext: { vm.startNewGame() }
                 )
             }
             

@@ -41,19 +41,19 @@ struct RGBData: Equatable, Codable {
     }
 }
 
-struct Tile: Identifiable, Equatable {
+struct Tile: Identifiable, Equatable, Codable {
     let id: Int             // Unique ID
     let correctId: Int      // The grid index where this tile SHOULD be
     let rgb: RGBData        // The color data
     let isFixed: Bool       // Is this a corner anchor?
     var currentIdx: Int     // Logic helper
-    
+
     static func == (lhs: Tile, rhs: Tile) -> Bool {
         return lhs.id == rhs.id
     }
 }
 
-enum GameStatus {
+enum GameStatus: String, Codable {
     case preview
     case playing
     case animating

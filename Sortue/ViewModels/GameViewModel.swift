@@ -18,14 +18,20 @@ class GameViewModel: ObservableObject {
     var gridSize: (w: Int, h: Int) { (gridDimension, gridDimension) }
     
     init() {
-        startNewGame()
+        loadGameState()
+        if tiles.isEmpty {
+            startNewGame()
+        }
     }
     
     func startNewGame(dimension: Int? = nil, preserveColors: Bool = false) {
         if let d = dimension { self.gridDimension = d }
-        
+
         // Update level for the current dimension
         self.currentLevel = UserDefaults.standard.integer(forKey: "level_count_\(gridDimension)") + 1
+
+        // Clear saved game state when starting a new game
+        clearGameState()
         
         shuffleTask?.cancel()
         winTask?.cancel()
@@ -238,15 +244,15 @@ class GameViewModel: ObservableObject {
     private func shuffleBoard() {
         var mutableTiles = tiles.filter { !$0.isFixed }
         let fixedTiles = tiles.filter { $0.isFixed }
-        
+
         mutableTiles.shuffle()
-        
+
         var finalGrid = Array(repeating: Tile?.none, count: gridSize.w * gridSize.h)
-        
+
         for tile in fixedTiles {
             finalGrid[tile.correctId] = tile
         }
-        
+
         var mutIdx = 0
         for i in 0..<finalGrid.count {
             if finalGrid[i] == nil {
@@ -254,11 +260,14 @@ class GameViewModel: ObservableObject {
                 mutIdx += 1
             }
         }
-        
+
         withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
             self.tiles = finalGrid.compactMap { $0 }
             self.status = .playing
         }
+
+        // Save game state after shuffling
+        saveGameState()
     }
     
     func selectTile(_ tile: Tile) {
@@ -282,24 +291,32 @@ class GameViewModel: ObservableObject {
     private func swapTiles(id1: Int, id2: Int) {
         guard let idx1 = tiles.firstIndex(where: { $0.id == id1 }),
               let idx2 = tiles.firstIndex(where: { $0.id == id2 }) else { return }
-        
+
         withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
             tiles.swapAt(idx1, idx2)
         }
         moves += 1
+
+        // Save game state after each move
+        saveGameState()
+
         checkWinCondition()
     }
     
     func useHint() {
         guard status == .playing else { return }
-        
+
         if let wrongIdx = tiles.firstIndex(where: { $0.correctId != tiles.firstIndex(of: $0) && !$0.isFixed }) {
             let tileToFix = tiles[wrongIdx]
             let targetIdx = tileToFix.correctId
-            
+
             withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                 tiles.swapAt(wrongIdx, targetIdx)
             }
+
+            // Save game state after using hint
+            saveGameState()
+
             checkWinCondition()
         }
     }
@@ -326,4 +343,72 @@ class GameViewModel: ObservableObject {
             }
         }
     }
+
+    // MARK: - Game State Persistence
+
+    private func saveGameState() {
+        let cornersData: CornersData? = currentCorners.map { corners in
+            CornersData(tl: corners.tl, tr: corners.tr, bl: corners.bl, br: corners.br)
+        }
+
+        let gameState = GameState(
+            tiles: tiles,
+            gridDimension: gridDimension,
+            moves: moves,
+            status: status,
+            currentLevel: currentLevel,
+            selectedTileId: selectedTileId,
+            currentCorners: cornersData
+        )
+
+        do {
+            let data = try JSONEncoder().encode(gameState)
+            UserDefaults.standard.set(data, forKey: "savedGameState")
+        } catch {
+            print("Failed to save game state: \(error)")
+        }
+    }
+
+    private func loadGameState() {
+        guard let data = UserDefaults.standard.data(forKey: "savedGameState") else { return }
+
+        do {
+            let gameState = try JSONDecoder().decode(GameState.self, from: data)
+            self.tiles = gameState.tiles
+            self.gridDimension = gameState.gridDimension
+            self.moves = gameState.moves
+            self.status = gameState.status
+            self.currentLevel = gameState.currentLevel
+            self.selectedTileId = gameState.selectedTileId
+
+            if let cornersData = gameState.currentCorners {
+                self.currentCorners = (tl: cornersData.tl, tr: cornersData.tr, bl: cornersData.bl, br: cornersData.br)
+            }
+        } catch {
+            print("Failed to load game state: \(error)")
+        }
+    }
+
+    func clearGameState() {
+        UserDefaults.standard.removeObject(forKey: "savedGameState")
+    }
+}
+
+// MARK: - GameState Codable
+
+private struct CornersData: Codable {
+    let tl: RGBData
+    let tr: RGBData
+    let bl: RGBData
+    let br: RGBData
+}
+
+private struct GameState: Codable {
+    let tiles: [Tile]
+    let gridDimension: Int
+    let moves: Int
+    let status: GameStatus
+    let currentLevel: Int
+    let selectedTileId: Int?
+    let currentCorners: CornersData?
 }
