@@ -47,17 +47,20 @@ struct GameView: View {
                             isWon: vm.status == .won || vm.status == .animating,
                             index: index,
                             gridWidth: vm.gridSize.w,
+                            status: vm.status, // Pass game status
                             namespace: animation
                         )
-                        .onTapGesture { vm.selectTile(tile) }
+                        .onTapGesture {
+                            // Prevent moving if already correct (and not just fixed)
+                            if vm.status == .playing && tile.correctId == index {
+                                let generator = UINotificationFeedbackGenerator()
+                                generator.notificationOccurred(.success) // Tiny haptic to say "it's locked"
+                                return
+                            }
+                            vm.selectTile(tile)
+                        }
                     }
                 }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 24)
-                        .fill(Color.white)
-                        .shadow(color: .black.opacity(0.05), radius: 20, x: 0, y: 10)
-                )
                 .padding()
                 
                 Spacer()
@@ -125,12 +128,17 @@ struct TileView: View {
     let isWon: Bool
     let index: Int
     let gridWidth: Int
+    let status: GameStatus // Need status to check if we are playing
     let namespace: Namespace.ID
     
     var body: some View {
         let x = index % gridWidth
         let y = index / gridWidth
         let delay = Double(x + y) * 0.05
+        
+        // Determine if placed correctly during gameplay
+        // Fixed tiles are always "correct" but we treat them differently visually usually
+        let isCorrectlyPlaced = (status == .playing) && (tile.correctId == index) && !tile.isFixed
         
         ZStack {
             RoundedRectangle(cornerRadius: 8)
@@ -143,6 +151,12 @@ struct TileView: View {
                             Circle()
                                 .fill(.black.opacity(0.3))
                                 .frame(width: 6, height: 6)
+                        } else if isCorrectlyPlaced {
+                            // "Locked" visual feedback for correctly placed mutable tiles
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 10, weight: .bold))
+                                .foregroundColor(.white.opacity(0.5))
+                                .transition(.scale.combined(with: .opacity))
                         }
                     }
                 )
@@ -151,9 +165,15 @@ struct TileView: View {
                         .stroke(Color.white, lineWidth: isSelected ? 4 : 0)
                         .shadow(radius: isSelected ? 10 : 0)
                 )
-                .scaleEffect(isSelected ? 0.9 : 1.0)
+                // Visual pop for correctly placed items
+                .scaleEffect(isCorrectlyPlaced ? 0.95 : (isSelected ? 0.9 : 1.0))
                 .scaleEffect(isWon ? 1.1 : 1.0)
+                .opacity(isCorrectlyPlaced ? 0.9 : 1.0) // Slight dim to show it's "settled"
                 .offset(y: isWon ? -10 : 0)
+                .animation(
+                    isWon ? .spring(response: 0.4, dampingFraction: 0.5).delay(delay) : .spring(response: 0.3, dampingFraction: 0.7),
+                    value: isCorrectlyPlaced
+                )
                 .animation(
                     isWon ? .spring(response: 0.4, dampingFraction: 0.5).delay(delay) : .default,
                     value: isWon
