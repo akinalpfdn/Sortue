@@ -1,7 +1,7 @@
 import SwiftUI
+import UIKit
 
 // Raw RGB Data structure to ensure mathematical precision
-// We use this instead of SwiftUI.Color to avoid color space conversion issues
 struct RGBData: Equatable, Codable {
     let r: Double
     let g: Double
@@ -10,6 +10,26 @@ struct RGBData: Equatable, Codable {
     // Helper to convert to SwiftUI Color for display
     var color: Color {
         Color(red: r, green: g, blue: b)
+    }
+    
+    // Create RGBData from Hue, Saturation, Brightness
+    static func fromHSB(h: Double, s: Double, b: Double) -> RGBData {
+        let color = UIColor(hue: CGFloat(h), saturation: CGFloat(s), brightness: CGFloat(b), alpha: 1.0)
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        
+        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        return RGBData(r: Double(red), g: Double(green), b: Double(blue))
+    }
+    
+    // Helper to check distance between colors
+    func distance(to other: RGBData) -> Double {
+        let dr = r - other.r
+        let dg = g - other.g
+        let db = b - other.b
+        return sqrt(dr*dr + dg*dg + db*db)
     }
     
     // Helper to check similarity
@@ -32,8 +52,6 @@ struct Tile: Identifiable, Equatable {
         return lhs.id == rhs.id
     }
 }
-
-
 
 enum GameStatus {
     case preview
