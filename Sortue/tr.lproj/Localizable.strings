@@ -94,5 +94,5 @@
 /* Landing Page */
 "landing_subtitle" = "Uyumu Geri Getir";
 "how_to_play_title" = "Nasıl Oynanır";
-"how_to_play_desc" = "Kareleri sürükleyip bırakarak mükemmel bir renk geçişi oluştur. Köşeler sabit rehberlerdir.";
+"how_to_play_desc" = "Karelerin yerlerini değiştirerek mükemmel bir renk geçişi oluştur. Köşeler referans olmaları için sabit bırakılmışlardır.";
 "start_game" = "Oyuna Başla";

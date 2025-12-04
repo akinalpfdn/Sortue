@@ -4,6 +4,7 @@ struct GameView: View {
     @StateObject private var vm = GameViewModel()
     @Namespace private var animation
     @State private var showAbout = false
+    @State private var showSolutionPreview = false // State for solution popup
     
     var body: some View {
         ZStack {
@@ -25,6 +26,10 @@ struct GameView: View {
                     }
                     Spacer()
                     HStack(spacing: 12) {
+                        // Solution Preview Button
+                        CircleButton(icon: "eye.fill", action: showPreview)
+                            .disabled(vm.status != .playing || showSolutionPreview)
+                        
                         CircleButton(icon: "lightbulb.fill", action: vm.useHint)
                             .disabled(vm.status != .playing)
                         CircleButton(icon: "shuffle", action: { vm.startNewGame() })
@@ -98,7 +103,7 @@ struct GameView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
             }
-            .blur(radius: (vm.status == .won || showAbout) ? 5 : 0)
+            .blur(radius: (vm.status == .won || showAbout || showSolutionPreview) ? 5 : 0)
             
             if vm.status == .won {
                 WinOverlay(
@@ -115,8 +120,78 @@ struct GameView: View {
                     .zIndex(200)
             }
             
+            // Solution Preview Modal
+            if showSolutionPreview {
+                SolutionOverlay(tiles: vm.tiles, gridSize: vm.gridSize, namespace: animation)
+                    .zIndex(150)
+            }
+            
             if vm.status == .animating {
                 ParticleSystem()
+            }
+        }
+    }
+    
+    // Logic to show preview for 2 seconds
+    private func showPreview() {
+        withAnimation { showSolutionPreview = true }
+        
+        // Haptic feedback
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        
+        // Auto-hide
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            withAnimation {
+                showSolutionPreview = false
+            }
+        }
+    }
+}
+
+// New Solution Overlay Component
+struct SolutionOverlay: View {
+    let tiles: [Tile]
+    let gridSize: (w: Int, h: Int)
+    let namespace: Namespace.ID
+    
+    var body: some View {
+        // Create a sorted version of tiles to show the solution
+        let solvedTiles = tiles.sorted { $0.correctId < $1.correctId }
+        
+        ZStack {
+            Color.black.opacity(0.3).ignoresSafeArea()
+                .onTapGesture { /* Block taps */ }
+            
+            VStack(spacing: 16) {
+                Text("Target Gradient")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding(.top, 10)
+                    .shadow(radius: 4)
+                
+                LazyVGrid(
+                    columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: gridSize.w),
+                    spacing: 4
+                ) {
+                    ForEach(solvedTiles) { tile in
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(tile.rgb.color)
+                            .aspectRatio(1, contentMode: .fit)
+                            .matchedGeometryEffect(id: tile.id, in: namespace)
+                            // Optional: Show dots on fixed tiles in preview too
+                            .overlay(
+                                Group {
+                                    if tile.isFixed {
+                                        Circle()
+                                            .fill(.black.opacity(0.3))
+                                            .frame(width: 4, height: 4)
+                                    }
+                                }
+                            )
+                    }
+                }
+                .padding()
             }
         }
     }
@@ -168,7 +243,6 @@ struct TileView: View {
                 // Visual pop for correctly placed items
                 .scaleEffect(isCorrectlyPlaced ? 0.95 : (isSelected ? 0.9 : 1.0))
                 .scaleEffect(isWon ? 1.1 : 1.0)
-                .opacity(isCorrectlyPlaced ? 0.9 : 1.0) // Slight dim to show it's "settled"
                 .offset(y: isWon ? -10 : 0)
                 .animation(
                     isWon ? .spring(response: 0.4, dampingFraction: 0.5).delay(delay) : .spring(response: 0.3, dampingFraction: 0.7),

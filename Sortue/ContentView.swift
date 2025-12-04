@@ -25,5 +25,8 @@ struct ContentView: View {
                 .zIndex(100) // Ensure it stays on top
             }
         }
+        .onAppear {
+            showLanding = rateManager.currentLaunchCount == 0
+        }
     }
 }
