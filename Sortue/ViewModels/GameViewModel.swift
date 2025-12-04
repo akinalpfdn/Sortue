@@ -209,21 +209,28 @@ class GameViewModel: ObservableObject {
             s4 = rnd(0.8...1.0); b4 = rnd(0.1...0.3) // Very Dark
         }
         
-        // Map to corners with strict brightness structure:
-        // TL (Top-Left) = Lightest (h1)
-        // BR (Bottom-Right) = Darkest (h4)
-        // TR & BL = Mid-tones (h2, h3)
-        // We shuffle TR and BL assignment randomly to keep variety in the diagonal
+        // Define all 4 color objects
+        let c1 = RGBData.fromHSB(h: h1, s: s1, b: b1) // Lightest
+        let c4 = RGBData.fromHSB(h: h4, s: s4, b: b4) // Darkest
+        let c2 = RGBData.fromHSB(h: h2, s: s2, b: b2) // Mid 1
+        let c3 = RGBData.fromHSB(h: h3, s: s3, b: b3) // Mid 2
+
+        // Rotate/Shuffle assignments so "Light" isn't always Top-Left
+        // We pick a random rotation for the corner assignment
+        let rotation = Int.random(in: 0...3)
         
-        let tl = RGBData.fromHSB(h: h1, s: s1, b: b1)
-        let br = RGBData.fromHSB(h: h4, s: s4, b: b4)
+        let tl, tr, bl, br: RGBData
         
-        let mid1 = RGBData.fromHSB(h: h2, s: s2, b: b2)
-        let mid2 = RGBData.fromHSB(h: h3, s: s3, b: b3)
-        
-        let swapMids = Bool.random()
-        let tr = swapMids ? mid1 : mid2
-        let bl = swapMids ? mid2 : mid1
+        switch rotation {
+        case 0: // Original (Light TL -> Dark BR)
+            tl = c1; tr = c2; bl = c3; br = c4
+        case 1: // Rotated 90 (Light TR -> Dark BL)
+            tl = c3; tr = c1; bl = c4; br = c2
+        case 2: // Rotated 180 (Light BR -> Dark TL)
+            tl = c4; tr = c3; bl = c2; br = c1
+        default: // Rotated 270 (Light BL -> Dark TR)
+            tl = c2; tr = c4; bl = c1; br = c3
+        }
         
         return (tl, tr, bl, br)
     }
