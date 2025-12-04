@@ -41,7 +41,7 @@ class GameViewModel: ObservableObject {
         if preserveColors, let current = currentCorners {
             corners = current
         } else {
-            // Use Harmonious Strategy
+            // Use Curated Strategy
             corners = generateHarmoniousCorners()
             currentCorners = corners
         }
@@ -84,120 +84,148 @@ class GameViewModel: ObservableObject {
         }
     }
     
-    // Generates aesthetically pleasing palettes using HSB Color Theory
+    // Generates aesthetically pleasing palettes using Curated Harmony Profiles
     private func generateHarmoniousCorners() -> (tl: RGBData, tr: RGBData, bl: RGBData, br: RGBData) {
-        var bestCorners: (tl: RGBData, tr: RGBData, bl: RGBData, br: RGBData)? = nil
-        var maxMinDistanceFound: Double = 0.0 // Track the best distance found so far
         
-        // INCREASED THRESHOLD: 0.25 -> 0.45
-        // This forces colors to be mathematically much further apart.
-        let targetMinDistance = 0.45
-        
-        // Retry loop to ensure distinct corners
-        for _ in 0..<50 {
-            // Base Hue: 0.0 to 1.0
-            let baseHue = Double.random(in: 0...1)
-            
-            // High Contrast Palette settings
-            // Force saturation to be either very high or very low (pastel) to avoid muddy middles
-            let highSat = Double.random(in: 0.8...1.0)
-            let lowSat = Double.random(in: 0.1...0.3)
-            
-            // Force brightness to be distinctly bright or dark
-            let bright = Double.random(in: 0.9...1.0)
-            let dark = Double.random(in: 0.3...0.5)
-            
-            // Palettes Strategies
-            enum PaletteStrategy: CaseIterable {
-                case analogous      // Neighbors on color wheel
-                case complementary  // Opposites on color wheel
-                case triadic        // Triangle on color wheel
-                case warmCool       // Temperature shift
-                case monochromatic  // Single hue, purely brightness/sat shift
-            }
-            
-            let strategy = PaletteStrategy.allCases.randomElement()!
-            
-            var tl, tr, bl, br: RGBData
-            
-            switch strategy {
-            case .analogous:
-                // WIDENED SPREAD: 0.15 -> 0.4 range
-                // Explicitly mix Bright/Dark and HighSat/LowSat
-                tl = RGBData.fromHSB(h: baseHue, s: highSat, b: bright) // Vivid Bright
-                tr = RGBData.fromHSB(h: (baseHue + 0.2).truncatingRemainder(dividingBy: 1), s: lowSat, b: bright) // Pastel Bright
-                bl = RGBData.fromHSB(h: (baseHue + 0.3).truncatingRemainder(dividingBy: 1), s: highSat, b: dark) // Vivid Dark
-                br = RGBData.fromHSB(h: (baseHue + 0.5).truncatingRemainder(dividingBy: 1), s: lowSat, b: dark) // Muted Dark
-                
-            case .complementary:
-                let compHue = (baseHue + 0.5).truncatingRemainder(dividingBy: 1)
-                tl = RGBData.fromHSB(h: baseHue, s: highSat, b: bright)
-                tr = RGBData.fromHSB(h: baseHue, s: lowSat, b: dark)
-                bl = RGBData.fromHSB(h: compHue, s: highSat, b: dark) // Contrast background
-                br = RGBData.fromHSB(h: compHue, s: lowSat, b: bright)
-                
-            case .triadic:
-                let h2 = (baseHue + 0.33).truncatingRemainder(dividingBy: 1)
-                let h3 = (baseHue + 0.66).truncatingRemainder(dividingBy: 1)
-                tl = RGBData.fromHSB(h: baseHue, s: highSat, b: bright)
-                tr = RGBData.fromHSB(h: h2, s: lowSat, b: bright)
-                bl = RGBData.fromHSB(h: h3, s: highSat, b: dark)
-                br = RGBData.fromHSB(h: baseHue, s: 0.5, b: 0.5) // Anchor neutral
-                
-            case .warmCool:
-                let warm = Double.random(in: 0.0...0.15) // Reds/Oranges
-                let cool = Double.random(in: 0.5...0.7)  // Blues/Purples
-                // Maximize contrast between the sets
-                tl = RGBData.fromHSB(h: warm, s: 0.9, b: 0.9)
-                tr = RGBData.fromHSB(h: warm, s: 0.3, b: 1.0) // Pastel warm
-                bl = RGBData.fromHSB(h: cool, s: 0.9, b: 0.4) // Deep cool
-                br = RGBData.fromHSB(h: cool, s: 0.2, b: 0.9) // Icy cool
-                
-            case .monochromatic:
-                // Maximize luminance distance
-                tl = RGBData.fromHSB(h: baseHue, s: 0.05, b: 1.0)  // Almost White
-                tr = RGBData.fromHSB(h: baseHue, s: 0.4, b: 0.9)   // Light
-                bl = RGBData.fromHSB(h: baseHue, s: 0.8, b: 0.6)   // Medium
-                br = RGBData.fromHSB(h: baseHue, s: 1.0, b: 0.2)   // Very Dark
-            }
-            
-            // Validate Distances
-            let d1 = tl.distance(to: tr)
-            let d2 = tl.distance(to: bl)
-            let d3 = tr.distance(to: br)
-            let d4 = bl.distance(to: br)
-            
-            // Check cross distance (TL to BR) to ensure overall gradient flow
-            let dCross = tl.distance(to: br)
-            
-            let currentMin = min(d1, min(d2, min(d3, min(d4, dCross))))
-
-            // Optimization: Keep track of the "best bad one" in case we never hit the target
-            if currentMin > maxMinDistanceFound {
-                maxMinDistanceFound = currentMin
-                bestCorners = (tl, tr, bl, br)
-            }
-
-            if currentMin > targetMinDistance {
-                return (tl, tr, bl, br)
-            }
+        // We define specific "Vibes" that are guaranteed to look good.
+        // No more random "Green + Brown" accidents.
+        enum HarmonyProfile: CaseIterable {
+            case sunset      // Pinks, Oranges, Purples, Warm Yellows
+            case ocean       // Deep Blues, Aquas, Teals, White
+            case forest      // Emeralds, Limes, Teals (Explicitly avoids brown)
+            case berry       // Magentas, Violets, Deep Reds
+            case aurora      // Greens, Blues, Purples (Northern Lights style)
+            case citrus      // Lemons, Limes, Oranges (Bright & Zesty)
+            case midnight    // Deep Blues, Purples, Dark Greys
         }
         
-        // Fallback Logic:
-        // 1. Return the best candidate we found (if it was decent, e.g. > 0.3)
-        // 2. Or force the High Contrast Primary set if everything was muddy
+        let profile = HarmonyProfile.allCases.randomElement()!
         
-        if let best = bestCorners, maxMinDistanceFound > 0.3 {
-            return best
+        // Helper to randomize slightly within a safe range
+        func rnd(_ range: ClosedRange<Double>) -> Double { Double.random(in: range) }
+        
+        var h1, s1, b1: Double
+        var h2, s2, b2: Double
+        var h3, s3, b3: Double
+        var h4, s4, b4: Double
+        
+        switch profile {
+        case .sunset:
+            // Warm gradient: Yellow/Orange -> Purple/Pink
+            h1 = rnd(0.12...0.16) // Warm Yellow
+            s1 = rnd(0.2...0.4); b1 = rnd(0.95...1.0) // Light
+            
+            h2 = rnd(0.02...0.08) // Orange/Red
+            s2 = rnd(0.7...0.9); b2 = rnd(0.9...1.0)
+            
+            h3 = rnd(0.85...0.92) // Magenta
+            s3 = rnd(0.4...0.6); b3 = rnd(0.8...0.9)
+            
+            h4 = rnd(0.75...0.82) // Deep Purple
+            s4 = rnd(0.8...1.0); b4 = rnd(0.3...0.5) // Dark
+            
+        case .ocean:
+            // Cool gradient: White/Cyan -> Deep Navy
+            h1 = rnd(0.5...0.55) // Cyan
+            s1 = rnd(0.05...0.2); b1 = rnd(0.95...1.0) // Almost white
+            
+            h2 = rnd(0.55...0.6) // Sky Blue
+            s2 = rnd(0.5...0.7); b2 = rnd(0.9...1.0)
+            
+            h3 = rnd(0.6...0.65) // Azure
+            s3 = rnd(0.6...0.8); b3 = rnd(0.6...0.8)
+            
+            h4 = rnd(0.65...0.7) // Deep Blue
+            s4 = rnd(0.9...1.0); b4 = rnd(0.2...0.4) // Dark
+            
+        case .forest:
+            // Fresh greens: Lime -> Emerald -> Teal (No Brown!)
+            h1 = rnd(0.25...0.32) // Fresh Green/Lime
+            s1 = rnd(0.3...0.5); b1 = rnd(0.9...1.0) // Bright
+            
+            h2 = rnd(0.35...0.42) // Green
+            s2 = rnd(0.6...0.8); b2 = rnd(0.8...0.9)
+            
+            h3 = rnd(0.45...0.5) // Teal Green
+            s3 = rnd(0.5...0.7); b3 = rnd(0.6...0.8)
+            
+            h4 = rnd(0.5...0.55) // Dark Teal
+            s4 = rnd(0.8...1.0); b4 = rnd(0.2...0.4) // Dark
+            
+        case .berry:
+            // Pink -> Red -> Purple
+            h1 = rnd(0.9...0.95) // Light Pink
+            s1 = rnd(0.2...0.4); b1 = rnd(0.95...1.0)
+            
+            h2 = rnd(0.95...1.0) // Red/Pink
+            s2 = rnd(0.7...0.9); b2 = rnd(0.8...1.0)
+            
+            h3 = rnd(0.7...0.8) // Violet
+            s3 = rnd(0.5...0.7); b3 = rnd(0.6...0.8)
+            
+            h4 = rnd(0.8...0.9) // Deep Magenta
+            s4 = rnd(0.9...1.0); b4 = rnd(0.2...0.4)
+        
+        case .aurora:
+            // Green -> Blue -> Purple (Classic Northern Lights)
+            h1 = rnd(0.3...0.35) // Green
+            s1 = rnd(0.4...0.6); b1 = rnd(0.9...1.0)
+            
+            h2 = rnd(0.5...0.55) // Cyan
+            s2 = rnd(0.6...0.8); b2 = rnd(0.8...0.9)
+            
+            h3 = rnd(0.6...0.65) // Blue
+            s3 = rnd(0.5...0.7); b3 = rnd(0.6...0.8)
+            
+            h4 = rnd(0.75...0.8) // Purple
+            s4 = rnd(0.8...1.0); b4 = rnd(0.3...0.5)
+
+        case .citrus:
+            // Yellow -> Orange -> Lime
+            h1 = rnd(0.14...0.18) // Lemon Yellow
+            s1 = rnd(0.2...0.4); b1 = rnd(0.95...1.0)
+            
+            h2 = rnd(0.08...0.12) // Orange Yellow
+            s2 = rnd(0.6...0.8); b2 = rnd(0.9...1.0)
+            
+            h3 = rnd(0.25...0.3) // Lime
+            s3 = rnd(0.5...0.7); b3 = rnd(0.7...0.9)
+            
+            h4 = rnd(0.02...0.06) // Deep Orange
+            s4 = rnd(0.9...1.0); b4 = rnd(0.4...0.6)
+            
+        case .midnight:
+            // Grey -> Blue -> Violet
+            h1 = rnd(0.6...0.7) // Blue-ish Grey
+            s1 = rnd(0.0...0.1); b1 = rnd(0.9...1.0) // White/Grey
+            
+            h2 = rnd(0.6...0.65) // Slate Blue
+            s2 = rnd(0.3...0.5); b2 = rnd(0.6...0.8)
+            
+            h3 = rnd(0.7...0.75) // Violet Grey
+            s3 = rnd(0.4...0.6); b3 = rnd(0.5...0.7)
+            
+            h4 = rnd(0.65...0.7) // Midnight Blue
+            s4 = rnd(0.8...1.0); b4 = rnd(0.1...0.3) // Very Dark
         }
         
-        // Absolute fail-safe: Primary Colors + Yellow
-        return (
-            RGBData(r: 1, g: 0, b: 0),
-            RGBData(r: 0, g: 1, b: 0),
-            RGBData(r: 0, g: 0, b: 1),
-            RGBData(r: 1, g: 1, b: 0)
-        )
+        // Map to corners with strict brightness structure:
+        // TL (Top-Left) = Lightest (h1)
+        // BR (Bottom-Right) = Darkest (h4)
+        // TR & BL = Mid-tones (h2, h3)
+        // We shuffle TR and BL assignment randomly to keep variety in the diagonal
+        
+        let tl = RGBData.fromHSB(h: h1, s: s1, b: b1)
+        let br = RGBData.fromHSB(h: h4, s: s4, b: b4)
+        
+        let mid1 = RGBData.fromHSB(h: h2, s: s2, b: b2)
+        let mid2 = RGBData.fromHSB(h: h3, s: s3, b: b3)
+        
+        let swapMids = Bool.random()
+        let tr = swapMids ? mid1 : mid2
+        let bl = swapMids ? mid2 : mid1
+        
+        return (tl, tr, bl, br)
     }
     
     private func shuffleBoard() {
