@@ -288,7 +288,7 @@ class GameViewModel: ObservableObject {
         }
     }
     
-    private func swapTiles(id1: Int, id2: Int) {
+    func swapTiles(id1: Int, id2: Int) {
         guard let idx1 = tiles.firstIndex(where: { $0.id == id1 }),
               let idx2 = tiles.firstIndex(where: { $0.id == id2 }) else { return }
 

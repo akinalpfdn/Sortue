@@ -6,6 +6,13 @@ struct GameView: View {
     @State private var showAbout = false
     @State private var showSolutionPreview = false // State for solution popup
     
+    // Drag & Interaction State
+    @State private var draggedTile: Tile?
+    @State private var pressedTileId: Int?
+    @State private var dragLocation: CGPoint = .zero
+    @State private var isDragging = false
+    @State private var gridRect: CGRect = .zero
+    
     var body: some View {
         ZStack {
             Color.white.ignoresSafeArea()
@@ -25,48 +32,86 @@ struct GameView: View {
                             .font(.caption).foregroundColor(.gray).textCase(.uppercase)
                     }
                     Spacer()
-                    HStack(spacing: 12) {
-                        // Solution Preview Button
-                        CircleButton(icon: "eye.fill", action: showPreview)
-                            .disabled(vm.status != .playing || showSolutionPreview)
-                        
-                        CircleButton(icon: "lightbulb.fill", action: vm.useHint)
-                            .disabled(vm.status != .playing)
-                        CircleButton(icon: "shuffle", action: { vm.startNewGame() })
-                            .disabled(vm.status == .preview)
-                    }
+                    
                 }
                 .padding(.horizontal).padding(.top)
-                
-                Spacer()
+                HStack(spacing: 12) {
+                    Spacer()
+                    // Solution Preview Button
+                    CircleButton(icon: "eye.fill", action: showPreview)
+                        .disabled(vm.status != .playing || showSolutionPreview)
+                    
+                    CircleButton(icon: "lightbulb.fill", action: vm.useHint)
+                        .disabled(vm.status != .playing)
+                    CircleButton(icon: "shuffle", action: { vm.startNewGame() })
+                        .disabled(vm.status == .preview)
+                } 
                 
                 // Game Grid
-                LazyVGrid(
-                    columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: vm.gridSize.w),
-                    spacing: 4
-                ) {
-                    ForEach(Array(vm.tiles.enumerated()), id: \.element.id) { index, tile in
-                        TileView(
-                            tile: tile,
-                            isSelected: vm.selectedTileId == tile.id,
-                            isWon: vm.status == .won || vm.status == .animating,
-                            index: index,
-                            gridWidth: vm.gridSize.w,
-                            status: vm.status, // Pass game status
-                            namespace: animation
-                        )
-                        .onTapGesture {
-                            // Prevent moving if already correct (and not just fixed)
-                            if vm.status == .playing && tile.correctId == index {
-                                let generator = UINotificationFeedbackGenerator()
-                                generator.notificationOccurred(.success) // Tiny haptic to say "it's locked"
-                                return
-                            }
-                            vm.selectTile(tile)
+                ZStack(alignment: .topLeading) {
+                    LazyVGrid(
+                        columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: vm.gridSize.w),
+                        spacing: 4
+                    ) {
+                        ForEach(Array(vm.tiles.enumerated()), id: \.element.id) { index, tile in
+                            TileView(
+                                tile: tile,
+                                isSelected: vm.selectedTileId == tile.id,
+                                isWon: vm.status == .won || vm.status == .animating,
+                                index: index,
+                                gridWidth: vm.gridSize.w,
+                                status: vm.status, // Pass game status
+                                namespace: animation
+                            )
+                            .opacity(draggedTile?.id == tile.id ? 0.0 : 1.0) // Hide original when dragging
+                            .overlay(
+                                // Highlight overlay for "Touch Down" visual feedback
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.white.opacity(pressedTileId == tile.id ? 0.3 : 0))
+                            )
+                            .gesture(
+                                DragGesture(minimumDistance: 0, coordinateSpace: .named("GridSpace"))
+                                    .onChanged { value in
+                                        handleDragChanged(value, tile: tile)
+                                    }
+                                    .onEnded { value in
+                                        handleDragEnded(value, tile: tile)
+                                    }
+                            )
                         }
                     }
+                    .padding(16)
+                    .background(
+                        GeometryReader { geo in
+                            Color.clear.onAppear {
+                                gridRect = geo.frame(in: .named("GridSpace"))
+                            }
+                            .onChange(of: geo.frame(in: .named("GridSpace"))) { newFrame in
+                                gridRect = newFrame
+                            }
+                        }
+                    )
+                    .coordinateSpace(name: "GridSpace")
+                    
+                    // Draggable Tile Overlay
+                    if let draggedTile = draggedTile {
+                        let cellSize = calculateCellSize(containerWidth: gridRect.width)
+                        
+                        TileView(
+                            tile: draggedTile,
+                            isSelected: true, // Highlight dragged tile
+                            isWon: false,
+                            index: 0, // Index doesn't matter for visual
+                            gridWidth: vm.gridSize.w,
+                            status: vm.status,
+                            namespace: animation,
+                            enableGeometryEffect: false
+                        )
+                        .frame(width: cellSize, height: cellSize)
+                        .position(dragLocation)
+                        .allowsHitTesting(false)
+                    }
                 }
-                .padding()
                 
                 Spacer()
                 
@@ -144,6 +189,140 @@ struct GameView: View {
             }
         }
     }
+    
+    // MARK: - Interaction Logic
+    
+    private func handleDragChanged(_ value: DragGesture.Value, tile: Tile) {
+        guard vm.status == .playing, !tile.isFixed else { return }
+        
+        if !isDragging {
+            // Check threshold
+            if value.translation.width * value.translation.width + value.translation.height * value.translation.height > 100 { // 10px squared
+                isDragging = true
+                draggedTile = tile
+                pressedTileId = nil // Clear press highlight
+                vm.selectedTileId = nil // Clear any existing selection
+                
+                // Haptic for drag start
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                generator.impactOccurred()
+            } else {
+                pressedTileId = tile.id
+            }
+        }
+        
+        if isDragging {
+            dragLocation = value.location
+        }
+    }
+    
+    private func handleDragEnded(_ value: DragGesture.Value, tile: Tile) {
+        pressedTileId = nil
+        
+        if isDragging {
+            // Drop Logic
+            if let dragged = draggedTile {
+                // Find target
+                if let targetIndex = calculateTargetIndex(at: value.location) {
+                    // Ensure valid index and not fixed
+                    if targetIndex >= 0 && targetIndex < vm.tiles.count {
+                        let targetTile = vm.tiles[targetIndex]
+                        if !targetTile.isFixed && targetTile.id != dragged.id {
+                            vm.swapTiles(id1: dragged.id, id2: targetTile.id)
+                            
+                            // Success Haptic
+                            let generator = UIImpactFeedbackGenerator(style: .medium)
+                            generator.impactOccurred()
+                        }
+                    }
+                }
+            }
+            
+            // Reset
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                draggedTile = nil
+                isDragging = false
+            }
+        } else {
+            // Tap Logic
+            // Prevent moving if already correct (and not just fixed)
+            if vm.status == .playing && tile.correctId == vm.tiles.firstIndex(of: tile) {
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.success) // Tiny haptic to say "it's locked"
+                return
+            }
+            vm.selectTile(tile)
+        }
+    }
+    
+    private func calculateCellSize(containerWidth: CGFloat) -> CGFloat {
+        let spacing: CGFloat = 4
+        let columns = CGFloat(vm.gridSize.w)
+        // Subtract padding if necessary, but gridRect comes from the Grid itself which includes padding?
+        // LazyVGrid applies padding() modifier. The geometry reader is on the background of LazyVGrid.
+        // So gridRect.width is the width of the grid content + padding.
+        // Wait, LazyVGrid default spacing is 4.
+        // The padding() modifier adds system padding (usually 16).
+        // If GeoReader is on background of LazyVGrid (which has .padding()), it includes the padding.
+        // So available width for cells = containerWidth - (padding * 2) - (spacing * (cols - 1))
+        // But we don't know the exact padding value easily (it's platform dependent).
+        // Better: Put GeoReader INSIDE the LazyVGrid? No, that repeats.
+        
+        // Alternative: Use the width from the TileView itself?
+        // But we need it for the dragged tile frame.
+        
+        // Let's assume standard padding of 16 for now, or 0 if we can control it.
+        // The code has `.padding()` on the LazyVGrid.
+        // Let's assume the padding is included in gridRect.
+        // Actually, let's remove the default .padding() and use explicit padding so we know the math.
+        // Or just use the gridRect width and assume the padding is part of the visual but the cells fill the rest?
+        // No, LazyVGrid with .padding() insets the content.
+        
+        // Let's try to estimate:
+        // width = gridRect.width - 32 (16*2)
+        // This is risky.
+        
+        // Better approach:
+        // Calculate index based on relative position.
+        // We can just rely on the ratio.
+        
+        let effectiveWidth = containerWidth - 32 // Approximate padding
+        return (effectiveWidth - (columns - 1) * spacing) / columns
+    }
+    
+    private func calculateTargetIndex(at point: CGPoint) -> Int? {
+        // We need to map point (in GridSpace) to index.
+        // GridSpace is the LazyVGrid bounds (including padding).
+        
+        let cols = vm.gridSize.w
+        let rows = vm.gridSize.h
+        let spacing: CGFloat = 4
+        
+        // Inset by padding
+        let padding: CGFloat = 16
+        let x = point.x - padding
+        let y = point.y - padding
+        
+        let availableWidth = gridRect.width - (padding * 2)
+        let availableHeight = gridRect.height - (padding * 2)
+        
+        let cellW = (availableWidth - CGFloat(cols - 1) * spacing) / CGFloat(cols)
+        let cellH = cellW // Square cells
+        
+        // Check bounds
+        if x < 0 || x > availableWidth || y < 0 || y > availableHeight {
+            return nil
+        }
+        
+        let col = Int(x / (cellW + spacing))
+        let row = Int(y / (cellH + spacing))
+        
+        if col >= 0 && col < cols && row >= 0 && row < rows {
+            return row * cols + col
+        }
+        
+        return nil
+    }
 }
 
 // New Solution Overlay Component
@@ -202,6 +381,7 @@ struct TileView: View {
     let gridWidth: Int
     let status: GameStatus // Need status to check if we are playing
     let namespace: Namespace.ID
+    var enableGeometryEffect: Bool = true
     
     var body: some View {
         let x = index % gridWidth
@@ -213,10 +393,18 @@ struct TileView: View {
         let isCorrectlyPlaced = (status == .playing) && (tile.correctId == index) && !tile.isFixed
         
         ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(tile.rgb.color) // Use the new .rgb.color accessor
-                .aspectRatio(1, contentMode: .fit)
-                .matchedGeometryEffect(id: tile.id, in: namespace)
+            Group {
+                if enableGeometryEffect {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(tile.rgb.color)
+                        .aspectRatio(1, contentMode: .fit)
+                        .matchedGeometryEffect(id: tile.id, in: namespace)
+                } else {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(tile.rgb.color)
+                        .aspectRatio(1, contentMode: .fit)
+                }
+            }
                 .overlay(
                     Group {
                         if tile.isFixed {
