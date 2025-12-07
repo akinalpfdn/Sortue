@@ -96,3 +96,16 @@
 "how_to_play_title" = "Nasıl Oynanır";
 "how_to_play_desc" = "Karelerin yerlerini değiştirerek mükemmel bir renk geçişi oluştur. Köşeler referans olmaları için sabit bırakılmışlardır.";
 "start_game" = "Oyuna Başla";
+
+/* Landing View Onboarding */
+"skip" = "Atla";
+"start_sorting" = "Sıralamaya Başla";
+"continue" = "Devam Et";
+"landing_page_0_title" = "Sortue'ya Hoş Geldin";
+"landing_page_0_desc" = "Güzel renk gradyanı bulmacalarıyla zihnini rahatlat.";
+"landing_page_1_title" = "Değiştir ve Çöz";
+"landing_page_1_desc" = "Herhangi bir kareyi sürükleyerek diğeriyle değiştir. Renkleri doğru yerlerine koy.";
+"landing_page_2_title" = "Uyumu Yakala";
+"landing_page_2_desc" = "Renklerin akışını izle. Mükemmel gradyanı ortaya çıkarmak için bulmacayı çöz.";
+"landing_page_3_title" = "Kendine Meydan Oku";
+"landing_page_3_desc" = "Ruh haline göre ızgara boyutunu ayarla, 4x4'ten uzman seviyesi 12x12'ye kadar.";

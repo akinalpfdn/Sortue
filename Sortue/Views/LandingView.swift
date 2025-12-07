@@ -22,7 +22,7 @@ struct LandingView: View {
                     // Hide Skip on the last content page
                     if currentPage < 3 {
                         Button(action: onDismiss) {
-                            Text("Skip")
+                            Text("skip")
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(.gray)
                         }
@@ -75,7 +75,7 @@ struct LandingView: View {
                         }
                     }) {
                         HStack {
-                            Text(currentPage >= 3 ? "Start Sorting" : "Continue")
+                            Text(currentPage >= 3 ? "start_sorting" : "continue")
                                 .font(.headline)
                                 .fontWeight(.bold)
                             
@@ -147,22 +147,22 @@ struct OnboardingPageContent: View {
         }
     }
     
-    func titleForPage(_ page: Int) -> String {
+    func titleForPage(_ page: Int) -> LocalizedStringKey {
         switch page {
-        case 0: return "Welcome to Sortue"
-        case 1: return "Swap & Solve"
-        case 2: return "Find the Harmony"
-        case 3: return "Challenge Yourself"
+        case 0: return "landing_page_0_title"
+        case 1: return "landing_page_1_title"
+        case 2: return "landing_page_2_title"
+        case 3: return "landing_page_3_title"
         default: return ""
         }
     }
     
-    func descriptionForPage(_ page: Int) -> String {
+    func descriptionForPage(_ page: Int) -> LocalizedStringKey {
         switch page {
-        case 0: return "Relax your mind with beautiful color gradient puzzles."
-        case 1: return "Drag any tile to swap it with another. Put the colors in the right place."
-        case 2: return "Watch the colors flow. Solve the puzzle to reveal the perfect gradient."
-        case 3: return "Adjust the grid size to match your mood, from casual 4x4 to expert 12x12."
+        case 0: return "landing_page_0_desc"
+        case 1: return "landing_page_1_desc"
+        case 2: return "landing_page_2_desc"
+        case 3: return "landing_page_3_desc"
         default: return ""
         }
     }

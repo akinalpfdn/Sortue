@@ -96,3 +96,16 @@
 "how_to_play_title" = "How to Play";
 "how_to_play_desc" = "Switch tiles to arrange them into a perfect color gradient. The corners are fixed guides to reference you.";
 "start_game" = "Start Game";
+
+/* Landing View Onboarding */
+"skip" = "Skip";
+"start_sorting" = "Start Sorting";
+"continue" = "Continue";
+"landing_page_0_title" = "Welcome to Sortue";
+"landing_page_0_desc" = "Relax your mind with beautiful color gradient puzzles.";
+"landing_page_1_title" = "Swap & Solve";
+"landing_page_1_desc" = "Drag any tile to swap it with another. Put the colors in the right place.";
+"landing_page_2_title" = "Find the Harmony";
+"landing_page_2_desc" = "Watch the colors flow. Solve the puzzle to reveal the perfect gradient.";
+"landing_page_3_title" = "Challenge Yourself";
+"landing_page_3_desc" = "Adjust the grid size to match your mood, from casual 4x4 to expert 12x12.";
