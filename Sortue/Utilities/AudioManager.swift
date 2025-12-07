@@ -3,8 +3,24 @@ import Combine
 class AudioManager: ObservableObject {
     static let shared = AudioManager()
     var audioPlayer: AVAudioPlayer?
+    @Published var isMusicEnabled: Bool {
+        didSet {
+            UserDefaults.standard.set(isMusicEnabled, forKey: "isMusicEnabled")
+            if isMusicEnabled {
+                playBackgroundMusic()
+            } else {
+                stopBackgroundMusic()
+            }
+        }
+    }
+    
+    private init() {
+        self.isMusicEnabled = UserDefaults.standard.object(forKey: "isMusicEnabled") as? Bool ?? true
+    }
 
     func playBackgroundMusic() {
+        guard isMusicEnabled else { return }
+        
         // If already initialized, just play/resume
         if let player = audioPlayer {
             if !player.isPlaying {

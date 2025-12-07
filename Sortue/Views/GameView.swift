@@ -4,6 +4,7 @@ struct GameView: View {
     @StateObject private var vm = GameViewModel()
     @Namespace private var animation
     @State private var showAbout = false
+    @State private var showSettings = false
     @State private var showSolutionPreview = false // State for solution popup
     
     // Drag & Interaction State
@@ -21,10 +22,17 @@ struct GameView: View {
             VStack(spacing: 20) {
                 // Header
                 HStack {
-                    Button(action: { withAnimation { showAbout = true } }) {
+                    Menu {
+                        Button(action: { withAnimation { showSettings = true } }) {
+                            Label("settings", systemImage: "gearshape")
+                        }
+                        
+                        Button(action: { withAnimation { showAbout = true } }) {
+                            Label("about", systemImage: "info.circle")
+                        }
+                    } label: {
                         StatusIcon(status: vm.status)
                     }
-                    .buttonStyle(PlainButtonStyle())
                     
                     VStack(alignment: .leading) {
                         Text("Sortue").font(.title2).fontWeight(.bold)
@@ -148,7 +156,7 @@ struct GameView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
             }
-            .blur(radius: (vm.status == .won || showAbout || showSolutionPreview) ? 5 : 0)
+            .blur(radius: (vm.status == .won || showAbout || showSettings || showSolutionPreview) ? 5 : 0)
             
             if vm.status == .won {
                 WinOverlay(
@@ -159,6 +167,11 @@ struct GameView: View {
             
             if showAbout {
                 AboutOverlay(onDismiss: { withAnimation { showAbout = false } })
+                    .zIndex(200)
+            }
+            
+            if showSettings {
+                SettingsOverlay(onDismiss: { withAnimation { showSettings = false } })
                     .zIndex(200)
             }
             

@@ -109,3 +109,8 @@
 "landing_page_2_desc" = "Watch the colors flow. Solve the puzzle to reveal the perfect gradient.";
 "landing_page_3_title" = "Challenge Yourself";
 "landing_page_3_desc" = "Adjust the grid size to match your mood, from casual 4x4 to expert 12x12.";
+
+/* Settings & Menu */
+"settings" = "Settings";
+"about" = "About";
+"music" = "Music";
