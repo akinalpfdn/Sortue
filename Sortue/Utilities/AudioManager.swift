@@ -5,9 +5,15 @@ class AudioManager: ObservableObject {
     var audioPlayer: AVAudioPlayer?
 
     func playBackgroundMusic() {
+        // If already initialized, just play/resume
+        if let player = audioPlayer {
+            if !player.isPlaying {
+                player.play()
+            }
+            return
+        }
+
         // Look for the file in the main bundle
-        // Note: If the file is in a folder reference, the path might be different, 
-        // but usually Bundle.main.url(forResource:...) finds it if it's in the Copy Bundle Resources phase.
         guard let url = Bundle.main.url(forResource: "soundTrack", withExtension: "mp3") else {
             print("Could not find soundTrack.mp3 in the bundle.")
             return
@@ -26,6 +32,10 @@ class AudioManager: ObservableObject {
         } catch {
             print("Error playing background music: \(error.localizedDescription)")
         }
+    }
+    
+    func pauseBackgroundMusic() {
+        audioPlayer?.pause()
     }
     
     func stopBackgroundMusic() {
