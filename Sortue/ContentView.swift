@@ -6,7 +6,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if showLanding {
-                LandingView(onPlay: {
+                LandingView(onDismiss: {
                     withAnimation { showLanding = false }
                 })
                 .transition(.opacity)
