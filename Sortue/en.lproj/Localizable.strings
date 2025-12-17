@@ -121,6 +121,7 @@
 /* Mode Selection */
 "casual_Text" = "Relax. No limits. Unlimited hints.";
 "ladder_Text" = "Finish the level with given move count";
+"grid_Info" = "The grid will get bigger as you level up.";
 "challenge_Text" = "zero help, are you accepting the challenge?";
 
 "back_to_menu" = "Back to Menu";

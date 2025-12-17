@@ -277,6 +277,14 @@ struct GameView: View {
         guard vm.status == .playing, !tile.isFixed else { return }
         
         if !isDragging {
+            // Check if tile is "locked" (correct position) in Casual/Precision
+            let isLocked = (tile.correctId == vm.tiles.firstIndex(of: tile)) && (vm.gameMode != .pure)
+            if isLocked {
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.success)
+                return
+            }
+
             // Check threshold
             if value.translation.width * value.translation.width + value.translation.height * value.translation.height > 100 { // 10px squared
                 isDragging = true
@@ -308,12 +316,22 @@ struct GameView: View {
                     // Ensure valid index and not fixed
                     if targetIndex >= 0 && targetIndex < vm.tiles.count {
                         let targetTile = vm.tiles[targetIndex]
+                        
+                        // Check if TARGET is locked
+                        let isTargetLocked = (targetTile.correctId == targetIndex) && (vm.gameMode != .pure)
+                        
                         if !targetTile.isFixed && targetTile.id != dragged.id {
-                            vm.swapTiles(id1: dragged.id, id2: targetTile.id)
-                            
-                            // Success Haptic
-                            let generator = UIImpactFeedbackGenerator(style: .medium)
-                            generator.impactOccurred()
+                            if isTargetLocked {
+                                // Prevent swapping into a locked tile
+                                let generator = UINotificationFeedbackGenerator()
+                                generator.notificationOccurred(.error)
+                            } else {
+                                vm.swapTiles(id1: dragged.id, id2: targetTile.id)
+                                
+                                // Success Haptic
+                                let generator = UIImpactFeedbackGenerator(style: .medium)
+                                generator.impactOccurred()
+                            }
                         }
                     }
                 }
@@ -326,8 +344,9 @@ struct GameView: View {
             }
         } else {
             // Tap Logic
-            // Prevent moving if already correct (and not just fixed)
-            if vm.status == .playing && tile.correctId == vm.tiles.firstIndex(of: tile) {
+            // Prevent moving if already correct (and not just fixed), BUT ONLY for Casual/Precision
+            let isLocked = (tile.correctId == vm.tiles.firstIndex(of: tile)) && (vm.gameMode != .pure)
+            if vm.status == .playing && isLocked {
                 let generator = UINotificationFeedbackGenerator()
                 generator.notificationOccurred(.success) // Tiny haptic to say "it's locked"
                 return

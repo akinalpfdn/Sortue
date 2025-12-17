@@ -101,8 +101,19 @@ struct ModeSelectionView: View {
                         .padding(.horizontal, 40)
                         .frame(height: 50)
                     
-                    Spacer()
                     
+                    if(selectedMode != .casual )
+                    {
+                        Text("grid_Info")
+                            .font(.app(.body)) // bodyLarge
+                            .foregroundColor(selectedMode == .pure ? Color(red: 1.0, green: 0.5, blue: 0.5) : .gray)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 40)
+                            .frame(height: 50)
+                        
+                        
+                    }
+                    Spacer()
                     // Play Button
                     MosaicPlayButton(action: {
                         onStartGame(selectedMode)

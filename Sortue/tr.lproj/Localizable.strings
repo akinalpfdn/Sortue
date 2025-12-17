@@ -120,7 +120,8 @@
 
 /* Mode Selection */
 "casual_Text" = "Rahatça oyna, sınırsız ipucu ve sıfır limit";
-"ladder_Text" = "Seviyeyi verilen hamle sayısında tamamla";
+"ladder_Text" = "Seviyeyi verilen hamle sayısıyla tamamla";
 "challenge_Text" = "yardım yok, kendi sınırlarını zorla";
+"grid_Info" = "Seviye atladıkça ızgara büyüyecek.";
 
 "back_to_menu" = "Menüye Dön";
