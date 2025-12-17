@@ -114,3 +114,10 @@
 "settings" = "Ayarlar";
 "about" = "Hakkında";
 "music" = "Müzik";
+
+/* Mode Selection */
+"casual_Text" = "Rahatça oyna, sınırsız ipucu ve sıfır limit";
+"ladder_Text" = "Seviyeyi verilen hamle sayısında tamamla";
+"challenge_Text" = "yardım yok, kendi sınırlarını zorla";
+
+"back_to_menu" = "Menüye Dön";

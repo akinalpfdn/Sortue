@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct GameView: View {
+    var mode: GameMode = .casual
+    var onBack: (() -> Void)?
+    
     @StateObject private var vm = GameViewModel()
     @Namespace private var animation
     @State private var showAbout = false
@@ -25,6 +28,12 @@ struct GameView: View {
                     Menu {
                         Button(action: { withAnimation { showSettings = true } }) {
                             Label("settings", systemImage: "gearshape")
+                        }
+                        
+                        if let onBack = onBack {
+                            Button(action: onBack) {
+                                Label("back_to_menu", systemImage: "arrow.left")
+                            }
                         }
                         
                         Button(action: { withAnimation { showAbout = true } }) {
@@ -183,6 +192,25 @@ struct GameView: View {
             
             if vm.status == .animating {
                 ParticleSystem()
+            }
+        }
+        .onAppear {
+            if vm.gameMode != mode {
+                vm.gameMode = mode
+                // If the stored save doesn't match this mode (or we switched), we might reload or restart
+                // Since vm init loads based on casual default, we need to explicitly reload for the new mode OR start new
+                
+                // Try loading for this mode
+                vm.loadGameState(for: mode)
+                
+                // If tiles are empty or mode mismatch in loaded state (logic inside vm needed?), start new.
+                // Actually loadGameState(for: mode) will load state if exists.
+                // If it loaded, tiles are not empty.
+                // If tiles are empty, start new.
+                
+                if vm.tiles.isEmpty {
+                     vm.startNewGame()
+                }
             }
         }
     }

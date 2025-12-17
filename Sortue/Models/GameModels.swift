@@ -59,3 +59,13 @@ enum GameStatus: String, Codable {
     case animating
     case won
 }
+
+enum GameMode: String, CaseIterable, Codable {
+    case casual
+    case precision
+    case pure
+    
+    var name: String {
+        return self.rawValue.capitalized
+    }
+}

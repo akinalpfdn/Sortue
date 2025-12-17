@@ -9,6 +9,7 @@ class GameViewModel: ObservableObject {
     @Published var selectedTileId: Int? = nil
     
     @Published var currentLevel: Int = 1
+    @Published var gameMode: GameMode = .casual
     
     private var shuffleTask: Task<Void, Never>?
     private var winTask: Task<Void, Never>?
@@ -30,7 +31,9 @@ class GameViewModel: ObservableObject {
         // Update level for the current dimension
         self.currentLevel = UserDefaults.standard.integer(forKey: "level_count_\(gridDimension)") + 1
 
-        // Clear saved game state when starting a new game
+        // Clear saved game state when starting a new game (unless we want to persist mode?)
+        // Ideally we should save the mode too.
+        
         clearGameState()
         
         shuffleTask?.cancel()
@@ -358,19 +361,38 @@ class GameViewModel: ObservableObject {
             status: status,
             currentLevel: currentLevel,
             selectedTileId: selectedTileId,
-            currentCorners: cornersData
+            currentCorners: cornersData,
+            gameMode: gameMode
         )
 
         do {
             let data = try JSONEncoder().encode(gameState)
-            UserDefaults.standard.set(data, forKey: "savedGameState")
+            UserDefaults.standard.set(data, forKey: "savedGameState_\(gameMode.rawValue)")
         } catch {
             print("Failed to save game state: \(error)")
         }
     }
 
     private func loadGameState() {
-        guard let data = UserDefaults.standard.data(forKey: "savedGameState") else { return }
+        // Try to load specific mode state if known, but init() doesn't know mode yet.
+        // We might need to load generic or default.
+        // Actually, init() calls loadGameState(). At that point mode is .casual (default).
+        // So it loads casual state.
+        // If we switch mode later, we should reload.
+        
+        loadGameState(for: gameMode)
+    }
+    
+    func loadGameState(for mode: GameMode) {
+        let key = "savedGameState_\(mode.rawValue)"
+        
+        // Migration: If no specific save, try legacy "savedGameState" ONLY for casual
+        var data = UserDefaults.standard.data(forKey: key)
+        if data == nil && mode == .casual {
+             data = UserDefaults.standard.data(forKey: "savedGameState")
+        }
+        
+        guard let data = data else { return }
 
         do {
             let gameState = try JSONDecoder().decode(GameState.self, from: data)
@@ -384,13 +406,18 @@ class GameViewModel: ObservableObject {
             if let cornersData = gameState.currentCorners {
                 self.currentCorners = (tl: cornersData.tl, tr: cornersData.tr, bl: cornersData.bl, br: cornersData.br)
             }
+            // Load mode, default to casual if missing (for legacy saves)
+            self.gameMode = gameState.gameMode ?? .casual
         } catch {
             print("Failed to load game state: \(error)")
         }
     }
 
     func clearGameState() {
-        UserDefaults.standard.removeObject(forKey: "savedGameState")
+        UserDefaults.standard.removeObject(forKey: "savedGameState_\(gameMode.rawValue)")
+        if gameMode == .casual {
+            UserDefaults.standard.removeObject(forKey: "savedGameState")
+        }
     }
 }
 
@@ -411,4 +438,5 @@ private struct GameState: Codable {
     let currentLevel: Int
     let selectedTileId: Int?
     let currentCorners: CornersData?
+    let gameMode: GameMode? // Optional for backward compatibility
 }
