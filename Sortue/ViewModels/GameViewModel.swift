@@ -40,6 +40,7 @@ class GameViewModel: ObservableObject {
         switch gameMode {
         case .casual:
             levelKey = "level_count_\(gridDimension)"
+            loadBestStats() // Refresh stats for new dimension
         case .precision:
             levelKey = "level_count_LADDER"
         case .pure:
