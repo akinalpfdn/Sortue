@@ -119,6 +119,7 @@
 "settings" = "Settings";
 "about" = "About";
 "music" = "Music";
+"haptic_feedback" = "Vibration";
 
 /* Mode Selection */
 "casual_Text" = "Relax. No limits. Unlimited hints.";

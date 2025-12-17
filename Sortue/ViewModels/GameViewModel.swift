@@ -416,9 +416,6 @@ class GameViewModel: ObservableObject {
     func selectTile(_ tile: Tile) {
         guard status == .playing, !tile.isFixed else { return }
         
-        let feedback = UIImpactFeedbackGenerator(style: .light)
-        feedback.impactOccurred()
-        
         if let selectedId = selectedTileId {
             if selectedId == tile.id {
                 selectedTileId = nil

@@ -50,6 +50,30 @@ struct SettingsOverlay: View {
                     .padding(.vertical, 12)
                     .background(Color.white.opacity(0.5))
                     .cornerRadius(12)
+                    
+                    HStack {
+                        Image(systemName: "hand.tap")
+                            .font(.app(size: 20))
+                            .foregroundColor(.orange)
+                            .frame(width: 30)
+                        
+                        Text("haptic_feedback")
+                            .font(.app(.body))
+                            .fontWeight(.medium)
+                        
+                        Spacer()
+                        
+                        Toggle("", isOn: Binding(
+                            get: { UserDefaults.standard.bool(forKey: "hapticFeedbackEnabled") },
+                            set: { UserDefaults.standard.set($0, forKey: "hapticFeedbackEnabled") }
+                        ))
+                            .labelsHidden()
+                            .tint(.orange)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+                    .background(Color.white.opacity(0.5))
+                    .cornerRadius(12)
                 }
                 .padding(.horizontal, 8)
                 

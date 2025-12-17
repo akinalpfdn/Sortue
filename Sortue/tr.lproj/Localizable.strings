@@ -119,6 +119,7 @@
 "settings" = "Ayarlar";
 "about" = "Hakkında";
 "music" = "Müzik";
+"haptic_feedback" = "Titreşim";
 
 /* Mode Selection */
 "casual_Text" = "Rahatça oyna, sınırsız ipucu ve sıfır limit";

@@ -310,9 +310,8 @@ struct GameView: View {
                 pressedTileId = nil // Clear press highlight
                 vm.selectedTileId = nil // Clear any existing selection
                 
-                // Haptic for drag start
-                let generator = UIImpactFeedbackGenerator(style: .light)
-                generator.impactOccurred()
+                pressedTileId = nil // Clear press highlight
+                vm.selectedTileId = nil // Clear any existing selection
             } else {
                 pressedTileId = tile.id
             }
@@ -345,10 +344,6 @@ struct GameView: View {
                                 generator.notificationOccurred(.error)
                             } else {
                                 vm.swapTiles(id1: dragged.id, id2: targetTile.id)
-                                
-                                // Success Haptic
-                                let generator = UIImpactFeedbackGenerator(style: .medium)
-                                generator.impactOccurred()
                             }
                         }
                     }
@@ -510,6 +505,15 @@ struct TileView: View {
                     isWon ? .spring(response: 0.4, dampingFraction: 0.5).delay(delay) : .default,
                     value: isWon
                 )
+                .onChange(of: isCorrectlyPlaced) { newValue in
+                    if newValue {
+                        let isHapticEnabled = UserDefaults.standard.bool(forKey: "hapticFeedbackEnabled")
+                        if isHapticEnabled {
+                            let generator = UINotificationFeedbackGenerator()
+                            generator.notificationOccurred(.success)
+                        }
+                    }
+                }
         }
     }
 }

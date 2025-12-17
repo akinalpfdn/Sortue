@@ -77,7 +77,13 @@ struct ModeSelectionView: View {
                         onSelectionChanged: { index in
                             let modes = GameMode.allCases
                             if index >= 0 && index < modes.count {
-                                selectedMode = modes[index]
+                                if selectedMode != modes[index] {
+                                    selectedMode = modes[index]
+                                    
+                                    // Haptic Feedback
+                                    let generator = UISelectionFeedbackGenerator()
+                                    generator.selectionChanged()
+                                }
                             }
                         }
                     ) { mode, isSelected in
