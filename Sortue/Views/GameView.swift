@@ -45,8 +45,14 @@ struct GameView: View {
                     
                     VStack(alignment: .leading) {
                         Text("Sortue").font(.app(.title2)).fontWeight(.bold)
-                        Text(String(format: NSLocalizedString("level_display", comment: ""), vm.currentLevel, vm.gridDimension, vm.gridDimension, vm.moves))
-                            .font(.app(.caption)).foregroundColor(.gray).textCase(.uppercase)
+                        if vm.gameMode == .precision {
+                            let remaining = max(0, vm.moveLimit - vm.moves)
+                            Text(String(format: NSLocalizedString("level_display_precision", comment: ""), vm.currentLevel, vm.gridDimension, vm.gridDimension, remaining))
+                                .font(.app(.caption)).foregroundColor(.gray).textCase(.uppercase)
+                        } else {
+                            Text(String(format: NSLocalizedString("level_display", comment: ""), vm.currentLevel, vm.gridDimension, vm.gridDimension, vm.moves))
+                                .font(.app(.caption)).foregroundColor(.gray).textCase(.uppercase)
+                        }
                     }
                     Spacer()
                     
@@ -54,14 +60,17 @@ struct GameView: View {
                 .padding(.horizontal).padding(.top)
                 HStack(spacing: 12) {
                     Spacer()
-                    // Solution Preview Button
-                    CircleButton(icon: "eye.fill", action: showPreview)
-                        .disabled(vm.status != .playing || showSolutionPreview)
+                    if vm.gameMode != .pure {
+                        CircleButton(icon: "eye.fill", action: showPreview)
+                            .disabled(vm.status != .playing || showSolutionPreview)
+                    }
                     
-                    CircleButton(icon: "lightbulb.fill", action: vm.useHint)
-                        .disabled(vm.status != .playing)
-                    CircleButton(icon: "shuffle", action: { vm.startNewGame() })
-                        .disabled(vm.status == .preview)
+                    if vm.gameMode == .casual {
+                        CircleButton(icon: "lightbulb.fill", action: vm.useHint)
+                            .disabled(vm.status != .playing)
+                        CircleButton(icon: "shuffle", action: { vm.startNewGame() })
+                            .disabled(vm.status == .preview)
+                    }
                 } 
                 
                 // Game Grid
@@ -78,6 +87,7 @@ struct GameView: View {
                                 index: index,
                                 gridWidth: vm.gridSize.w,
                                 status: vm.status, // Pass game status
+                                showCheck: vm.gameMode != .pure,
                                 namespace: animation
                             )
                             .opacity(draggedTile?.id == tile.id ? 0.0 : 1.0) // Hide original when dragging
@@ -121,6 +131,7 @@ struct GameView: View {
                             index: 0, // Index doesn't matter for visual
                             gridWidth: vm.gridSize.w,
                             status: vm.status,
+                            showCheck: vm.gameMode != .pure,
                             namespace: animation,
                             enableGeometryEffect: false
                         )
@@ -164,8 +175,18 @@ struct GameView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 .padding(.horizontal)
                 .padding(.bottom)
+                .opacity(vm.gameMode == .casual ? 1 : 0) // Hide slider if NOT casual
+                .allowsHitTesting(vm.gameMode == .casual)
             }
-            .blur(radius: (vm.status == .won || showAbout || showSettings || showSolutionPreview) ? 5 : 0)
+            .blur(radius: (vm.status == .won || vm.status == .gameOver || showAbout || showSettings || showSolutionPreview) ? 5 : 0)
+            
+            if vm.status == .gameOver {
+                GameOverOverlay(
+                    onRetry: { vm.startNewGame(dimension: vm.gridDimension) },
+                    onMenu: { onBack?() }
+                )
+                .zIndex(200)
+            }
             
             if vm.status == .won {
                 WinOverlay(
@@ -218,15 +239,10 @@ struct GameView: View {
                 // Since vm init loads based on casual default, we need to explicitly reload for the new mode OR start new
                 
                 // Try loading for this mode
-                vm.loadGameState(for: mode)
-                
-                // If tiles are empty or mode mismatch in loaded state (logic inside vm needed?), start new.
-                // Actually loadGameState(for: mode) will load state if exists.
-                // If it loaded, tiles are not empty.
-                // If tiles are empty, start new.
-                
-                if vm.tiles.isEmpty {
-                     vm.startNewGame()
+                if !vm.loadGameState(for: mode) {
+                    // If no save exists for this mode, start a FRESH game
+                    // This ensures we get new colors and state for the new mode
+                    vm.startNewGame()
                 }
             }
         }
@@ -392,6 +408,7 @@ struct TileView: View {
     let index: Int
     let gridWidth: Int
     let status: GameStatus // Need status to check if we are playing
+    var showCheck: Bool = true
     let namespace: Namespace.ID
     var enableGeometryEffect: Bool = true
     
@@ -402,7 +419,7 @@ struct TileView: View {
         
         // Determine if placed correctly during gameplay
         // Fixed tiles are always "correct" but we treat them differently visually usually
-        let isCorrectlyPlaced = (status == .playing) && (tile.correctId == index) && !tile.isFixed
+        let isCorrectlyPlaced = (status == .playing) && (tile.correctId == index) && !tile.isFixed && showCheck
         
         ZStack {
             Group {

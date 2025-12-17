@@ -10,6 +10,9 @@ class GameViewModel: ObservableObject {
     
     @Published var currentLevel: Int = 1
     @Published var gameMode: GameMode = .casual
+
+    @Published var minMoves: Int = 0
+    @Published var moveLimit: Int = 0 // For Precision mode
     
     private var shuffleTask: Task<Void, Never>?
     private var winTask: Task<Void, Never>?
@@ -28,8 +31,17 @@ class GameViewModel: ObservableObject {
     func startNewGame(dimension: Int? = nil, preserveColors: Bool = false) {
         if let d = dimension { self.gridDimension = d }
 
-        // Update level for the current dimension
-        self.currentLevel = UserDefaults.standard.integer(forKey: "level_count_\(gridDimension)") + 1
+        // Update level for the current dimension or mode
+        let levelKey: String
+        switch gameMode {
+        case .casual:
+            levelKey = "level_count_\(gridDimension)"
+        case .precision:
+            levelKey = "level_count_LADDER"
+        case .pure:
+            levelKey = "level_count_CHALLENGE"
+        }
+        self.currentLevel = UserDefaults.standard.integer(forKey: levelKey) + 1
 
         // Clear saved game state when starting a new game (unless we want to persist mode?)
         // Ideally we should save the mode too.
@@ -40,9 +52,28 @@ class GameViewModel: ObservableObject {
         winTask?.cancel()
         status = .preview
         moves = 0
+        minMoves = 0
+        moveLimit = 0
         selectedTileId = nil
+
+        // Dynamic Grid Sizing for Precision/Pure
+        if gameMode == .precision || gameMode == .pure {
+            let targetDim: Int
+            if currentLevel <= 15 {
+                targetDim = 4
+            } else {
+                // Starts at 5 for lvl 16. Increases every 7 levels.
+                targetDim = min(12, 5 + (currentLevel - 16) / 7)
+            }
+            
+            if gridDimension != targetDim {
+                gridDimension = targetDim
+                self.gridDimension = targetDim // Update published prop
+            }
+        }
         
-        let (w, h) = gridSize
+        // Refresh dimensions
+        let (w, h) = (gridDimension, gridDimension)
         
         // 1. Generate corners
         let corners: (tl: RGBData, tr: RGBData, bl: RGBData, br: RGBData)
@@ -88,9 +119,88 @@ class GameViewModel: ObservableObject {
         shuffleTask = Task {
             try? await Task.sleep(nanoseconds: 2_500_000_000) // 2.5s
             if !Task.isCancelled {
-                await MainActor.run { shuffleBoard() }
+                await MainActor.run { self.shuffleBoard() }
             }
         }
+    }
+    
+    private func shuffleBoard() {
+        var mutableTiles = tiles.filter { !$0.isFixed }
+        let fixedTiles = tiles.filter { $0.isFixed }
+        
+        mutableTiles.shuffle()
+        
+        var finalGrid = Array(repeating: Tile?.none, count: gridDimension * gridDimension)
+        
+        for tile in fixedTiles {
+            finalGrid[tile.correctId] = tile
+        }
+        
+        var mutIdx = 0
+        for i in 0..<finalGrid.count {
+            if finalGrid[i] == nil {
+                // We need to update currentIdx because the Tile is moving to a new slot 'i'
+                // But Tile struct is immutable let. We need to create copies or handle it properly.
+                // In Swift struct, we create a new instance with updated property.
+                var tile = mutableTiles[mutIdx]
+                tile.currentIdx = i
+                finalGrid[i] = tile
+                mutIdx += 1
+            }
+        }
+        
+        let shuffled = finalGrid.compactMap { $0 }
+        
+        withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
+            self.tiles = shuffled
+            self.status = .playing
+        }
+        
+        // Calculate Min Moves
+        let minM = calculateMinMoves(tiles: shuffled)
+        self.minMoves = minM
+        
+        // Calculate Move Limit (Precision)
+        if gameMode == .precision {
+            switch gridDimension {
+            case 4...7:
+                moveLimit = Int(1.6 * Double(minM)) + 4
+            case 8...11:
+                moveLimit = Int(2.2 * Double(minM)) + 8
+            default:
+                moveLimit = Int(2.5 * Double(minM)) + 12
+            }
+        } else {
+            moveLimit = 0
+        }
+        
+        saveGameState()
+    }
+
+    private func calculateMinMoves(tiles: [Tile]) -> Int {
+        var visited = [Bool](repeating: false, count: tiles.count)
+        var cycles = 0
+        
+        for i in 0..<tiles.count {
+            if visited[i] { continue }
+            
+            // If at correct position, 1-cycle
+            if tiles[i].correctId == i {
+                visited[i] = true
+                cycles += 1
+                continue
+            }
+            
+            var current = i
+            while !visited[current] {
+                visited[current] = true
+                let targetPos = tiles[current].correctId
+                current = targetPos
+            }
+            cycles += 1
+        }
+        
+        return tiles.count - cycles
     }
     
     // Generates aesthetically pleasing palettes using Curated Harmony Profiles
@@ -244,34 +354,23 @@ class GameViewModel: ObservableObject {
         return (tl, tr, bl, br)
     }
     
-    private func shuffleBoard() {
-        var mutableTiles = tiles.filter { !$0.isFixed }
-        let fixedTiles = tiles.filter { $0.isFixed }
 
-        mutableTiles.shuffle()
-
-        var finalGrid = Array(repeating: Tile?.none, count: gridSize.w * gridSize.h)
-
-        for tile in fixedTiles {
-            finalGrid[tile.correctId] = tile
-        }
-
-        var mutIdx = 0
-        for i in 0..<finalGrid.count {
-            if finalGrid[i] == nil {
-                finalGrid[i] = mutableTiles[mutIdx]
-                mutIdx += 1
-            }
-        }
-
-        withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
-            self.tiles = finalGrid.compactMap { $0 }
-            self.status = .playing
-        }
-
-        // Save game state after shuffling
-        saveGameState()
-    }
+    // Removed old shuffleBoard that was part of GameViewModel but is now private updated above
+    // Wait, the previous shuffleBoard func is below. I should replace IT.
+    // I will replace the call site in startNewGame first (done above), and finding the old definition to remove/update.
+    // The instructions say "Update startNewGame", "Update shuffleBoard".
+    // I have updated startNewGame to use the NEW logic but I pasted `private func shuffleBoard` inside `startNewGame` replacement block?
+    // No, I pasted it AFTER startNewGame block?
+    // Ah, I see. In the previous replacement block I closed the `startNewGame` function and then defined `private func shuffleBoard`.
+    // This effectively duplicated `shuffleBoard` if it existed below or shadowed it.
+    // I need to be careful. The original file HAS `private func shuffleBoard` at line 247.
+    // My previous replacement replaced lines 88-93 (Task block).
+    // So I inserted `private func shuffleBoard` right after `startNewGame`.
+    // This is valid Swift, but now I have TWO `shuffleBoard` functions.
+    // I MUST REMOVE the old `shuffleBoard` function at line 247.
+    
+    // Correction: I will use THIS block to remove the old shuffleBoard implementation to avoid duplication errors.
+    
     
     func selectTile(_ tile: Tile) {
         guard status == .playing, !tile.isFixed else { return }
@@ -303,7 +402,15 @@ class GameViewModel: ObservableObject {
         // Save game state after each move
         saveGameState()
 
-        checkWinCondition()
+        checkWinCondition() // Check win first
+        
+        if status != .won && status != .animating {
+            // Check Move Limit for Precision
+            if gameMode == .precision && moves >= moveLimit {
+                status = .gameOver
+                saveGameState()
+            }
+        }
     }
     
     func useHint() {
@@ -334,7 +441,16 @@ class GameViewModel: ObservableObject {
             let successFeedback = UINotificationFeedbackGenerator()
             successFeedback.notificationOccurred(.success)
             
-            let key = "level_count_\(gridDimension)"
+            let key: String
+            switch gameMode {
+            case .casual:
+                key = "level_count_\(gridDimension)"
+            case .precision:
+                key = "level_count_LADDER"
+            case .pure:
+                key = "level_count_CHALLENGE"
+            }
+            
             let currentWins = UserDefaults.standard.integer(forKey: key)
             UserDefaults.standard.set(currentWins + 1, forKey: key)
             
@@ -362,6 +478,8 @@ class GameViewModel: ObservableObject {
             currentLevel: currentLevel,
             selectedTileId: selectedTileId,
             currentCorners: cornersData,
+            minMoves: minMoves,
+            moveLimit: moveLimit,
             gameMode: gameMode
         )
 
@@ -383,7 +501,8 @@ class GameViewModel: ObservableObject {
         loadGameState(for: gameMode)
     }
     
-    func loadGameState(for mode: GameMode) {
+    @discardableResult
+    func loadGameState(for mode: GameMode) -> Bool {
         let key = "savedGameState_\(mode.rawValue)"
         
         // Migration: If no specific save, try legacy "savedGameState" ONLY for casual
@@ -392,7 +511,7 @@ class GameViewModel: ObservableObject {
              data = UserDefaults.standard.data(forKey: "savedGameState")
         }
         
-        guard let data = data else { return }
+        guard let data = data else { return false }
 
         do {
             let gameState = try JSONDecoder().decode(GameState.self, from: data)
@@ -402,14 +521,18 @@ class GameViewModel: ObservableObject {
             self.status = gameState.status
             self.currentLevel = gameState.currentLevel
             self.selectedTileId = gameState.selectedTileId
+            self.minMoves = gameState.minMoves ?? 0
+            self.moveLimit = gameState.moveLimit ?? 0
 
             if let cornersData = gameState.currentCorners {
                 self.currentCorners = (tl: cornersData.tl, tr: cornersData.tr, bl: cornersData.bl, br: cornersData.br)
             }
             // Load mode, default to casual if missing (for legacy saves)
             self.gameMode = gameState.gameMode ?? .casual
+            return true
         } catch {
             print("Failed to load game state: \(error)")
+            return false
         }
     }
 
@@ -438,5 +561,7 @@ private struct GameState: Codable {
     let currentLevel: Int
     let selectedTileId: Int?
     let currentCorners: CornersData?
+    let minMoves: Int?
+    let moveLimit: Int?
     let gameMode: GameMode? // Optional for backward compatibility
 }

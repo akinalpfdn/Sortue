@@ -58,6 +58,7 @@ enum GameStatus: String, Codable {
     case playing
     case animating
     case won
+    case gameOver
 }
 
 enum GameMode: String, CaseIterable, Codable {
