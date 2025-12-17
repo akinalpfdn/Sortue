@@ -59,10 +59,28 @@ struct GameView: View {
                 }
                 .padding(.horizontal).padding(.top)
                 HStack(spacing: 12) {
-                    Text(String(format: NSLocalizedString("min_moves", comment: ""), vm.minMoves))
-                        .font(.app(.subheadline))
-                        .fontWeight(.medium)
-                        .foregroundColor(.secondary)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(String(format: NSLocalizedString("min_moves", comment: ""), vm.minMoves))
+                            .font(.app(.subheadline))
+                            .fontWeight(.medium)
+                            .foregroundColor(.secondary)
+                        
+                        if vm.gameMode == .casual {
+                            if let bestTime = vm.bestTime {
+                                let mins = Int(bestTime) / 60
+                                let secs = Int(bestTime) % 60
+                                Text(String(format: NSLocalizedString("best_time", comment: ""), String(format: "%d:%02d", mins, secs)))
+                                    .font(.app(.caption))
+                                    .foregroundColor(.secondary.opacity(0.8))
+                            }
+                            
+                            if let bestMoves = vm.bestMoves {
+                                Text(String(format: NSLocalizedString("best_moves", comment: ""), bestMoves))
+                                    .font(.app(.caption))
+                                    .foregroundColor(.secondary.opacity(0.8))
+                            }
+                        }
+                    }
                     
                     Spacer()
                     

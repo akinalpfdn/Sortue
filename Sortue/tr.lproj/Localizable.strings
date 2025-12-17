@@ -10,6 +10,8 @@
 "next_level" = "Sonraki Seviye";
 "out_of_moves" = "Hamlelerin tükendi! Tekrar dene.";
 "min_moves" = "Min Hamle: %d";
+"best_time" = "En İyi Süre: %@";
+"best_moves" = "En İyi Hamle: %d";
 
 /* Rate Overlay */
 "enjoying_sortue" = "Sortue'yu sevdin mi?";

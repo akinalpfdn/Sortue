@@ -10,6 +10,8 @@
 "next_level" = "Next Level";
 "out_of_moves" = "You have run out of moves! Try again.";
 "min_moves" = "Min Moves: %d";
+"best_time" = "Best Time: %@";
+"best_moves" = "Best Moves: %d";
 
 /* Rate Overlay */
 "enjoying_sortue" = "Enjoying Sortue?";

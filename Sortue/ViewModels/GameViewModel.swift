@@ -13,9 +13,13 @@ class GameViewModel: ObservableObject {
 
     @Published var minMoves: Int = 0
     @Published var moveLimit: Int = 0 // For Precision mode
+    @Published var timeElapsed: TimeInterval = 0
+    @Published var bestTime: TimeInterval? = nil
+    @Published var bestMoves: Int? = nil
     
     private var shuffleTask: Task<Void, Never>?
     private var winTask: Task<Void, Never>?
+    private var timerTask: Task<Void, Never>?
     
     private var currentCorners: (tl: RGBData, tr: RGBData, bl: RGBData, br: RGBData)?
     
@@ -50,8 +54,11 @@ class GameViewModel: ObservableObject {
         
         shuffleTask?.cancel()
         winTask?.cancel()
+        stopTimer()
+        
         status = .preview
         moves = 0
+        timeElapsed = 0
         minMoves = 0
         moveLimit = 0
         selectedTileId = nil
@@ -155,6 +162,8 @@ class GameViewModel: ObservableObject {
             self.tiles = shuffled
             self.status = .playing
         }
+        
+        startTimer()
         
         // Calculate Min Moves
         let minM = calculateMinMoves(tiles: shuffled)
@@ -423,6 +432,10 @@ class GameViewModel: ObservableObject {
             withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                 tiles.swapAt(wrongIdx, targetIdx)
             }
+            
+            // Penalty
+            moves += 5
+            timeElapsed += 30
 
             // Save game state after using hint
             saveGameState()
@@ -437,6 +450,8 @@ class GameViewModel: ObservableObject {
         }
         
         if isWin {
+            stopTimer()
+            
             status = .animating
             let successFeedback = UINotificationFeedbackGenerator()
             successFeedback.notificationOccurred(.success)
@@ -444,7 +459,28 @@ class GameViewModel: ObservableObject {
             let key: String
             switch gameMode {
             case .casual:
-                key = "level_count_\(gridDimension)"
+                key = "level_count_\(gridDimension)" // Casual levels are per grid size
+                
+                // Track Best Stats for Casual
+                let timeKey = "casual_best_time_\(gridDimension)"
+                let movesKey = "casual_best_moves_\(gridDimension)"
+                
+                let currentBestTime = UserDefaults.standard.double(forKey: timeKey)
+                let currentBestMoves = UserDefaults.standard.integer(forKey: movesKey)
+                
+                // Update Best Time (lower is better, 0 means unset/none)
+                if currentBestTime == 0 || timeElapsed < currentBestTime {
+                    UserDefaults.standard.set(timeElapsed, forKey: timeKey)
+                }
+                
+                // Update Best Moves
+                if currentBestMoves == 0 || moves < currentBestMoves {
+                    UserDefaults.standard.set(moves, forKey: movesKey)
+                }
+                
+                // Refresh Published Properties
+                loadBestStats()
+                
             case .precision:
                 key = "level_count_LADDER"
             case .pure:
@@ -460,6 +496,41 @@ class GameViewModel: ObservableObject {
                     withAnimation { self.status = .won }
                 }
             }
+        }
+    }
+    
+    private func startTimer() {
+        stopTimer()
+        timerTask = Task {
+            while !Task.isCancelled {
+                try? await Task.sleep(nanoseconds: 1_000_000_000)
+                if !Task.isCancelled && status == .playing {
+                    await MainActor.run {
+                        self.timeElapsed += 1
+                    }
+                }
+            }
+        }
+    }
+    
+    private func stopTimer() {
+        timerTask?.cancel()
+        timerTask = nil
+    }
+    
+    private func loadBestStats() {
+        if gameMode == .casual {
+            let timeKey = "casual_best_time_\(gridDimension)"
+            let movesKey = "casual_best_moves_\(gridDimension)"
+            
+            let t = UserDefaults.standard.double(forKey: timeKey)
+            let m = UserDefaults.standard.integer(forKey: movesKey)
+            
+            bestTime = t > 0 ? t : nil
+            bestMoves = m > 0 ? m : nil
+        } else {
+            bestTime = nil
+            bestMoves = nil
         }
     }
 
@@ -480,7 +551,8 @@ class GameViewModel: ObservableObject {
             currentCorners: cornersData,
             minMoves: minMoves,
             moveLimit: moveLimit,
-            gameMode: gameMode
+            gameMode: gameMode,
+            timeElapsed: timeElapsed
         )
 
         do {
@@ -523,12 +595,20 @@ class GameViewModel: ObservableObject {
             self.selectedTileId = gameState.selectedTileId
             self.minMoves = gameState.minMoves ?? 0
             self.moveLimit = gameState.moveLimit ?? 0
+            self.timeElapsed = gameState.timeElapsed ?? 0
+            
+            if self.status == .playing {
+                startTimer() // Resume timer if loaded in playing state
+            }
 
             if let cornersData = gameState.currentCorners {
                 self.currentCorners = (tl: cornersData.tl, tr: cornersData.tr, bl: cornersData.bl, br: cornersData.br)
             }
             // Load mode, default to casual if missing (for legacy saves)
             self.gameMode = gameState.gameMode ?? .casual
+            
+            loadBestStats() // Load stats for current mode/grid
+            
             return true
         } catch {
             print("Failed to load game state: \(error)")
@@ -564,4 +644,5 @@ private struct GameState: Codable {
     let minMoves: Int?
     let moveLimit: Int?
     let gameMode: GameMode? // Optional for backward compatibility
+    let timeElapsed: TimeInterval?
 }
