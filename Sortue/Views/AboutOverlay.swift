@@ -18,7 +18,7 @@ struct AboutOverlay: View {
                         .frame(width: 80, height: 80)
                     
                     Image(systemName: "heart.fill")
-                        .font(.system(size: 36))
+                        .font(.app(size: 36))
                         .foregroundStyle(
                             LinearGradient(colors: [.pink, .red], startPoint: .topLeading, endPoint: .bottomTrailing)
                         )
@@ -26,21 +26,21 @@ struct AboutOverlay: View {
                 .padding(.top, 8)
                 
                 Text("thanks_playing")
-                    .font(.system(size: 28, weight: .bold, design: .default))
+                    .font(.app(size: 30).weight(.bold))
                     .foregroundStyle(.primary)
                 
                 VStack(spacing: 16) {
                     Text("hope_enjoy")
-                        .font(.body)
+                        .font(.app(.body))
                     
                     Text("simple_experience")
-                        .font(.body)
+                        .font(.app(.body))
                     
                     Text("support_me")
-                        .font(.body.weight(.medium))
+                        .font(.app(.body).weight(.medium))
                     // Credit
                     Text("music_credit")
-                        .font(.body)
+                        .font(.app(.body))
                         .foregroundStyle(.primary)
                         .padding(.top, 8)
                 }

@@ -31,7 +31,7 @@ struct WinOverlay: View {
                         .frame(width: 80, height: 80)
                     
                     Image(systemName: "sparkles")
-                        .font(.system(size: 36, weight: .light))
+                        .font(.app(size: 36).weight(.light))
                         .foregroundStyle(
                             LinearGradient(colors: [.indigo, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)
                         )
@@ -41,11 +41,11 @@ struct WinOverlay: View {
                 // Typography
                 VStack(spacing: 8) {
                     Text(title)
-                        .font(.system(size: 32, weight: .medium, design: .serif)) // Serif for premium look
+                        .font(.app(size: 32).weight(.medium))
                         .foregroundStyle(.primary)
                     
                     Text(subtitle)
-                        .font(.system(size: 16, weight: .regular, design: .default))
+                        .font(.app(size: 16).weight(.regular))
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 20)
@@ -56,7 +56,7 @@ struct WinOverlay: View {
                     // Secondary Action (Replay)
                     Button(action: onReplay) {
                         Image(systemName: "arrow.counterclockwise")
-                            .font(.system(size: 20, weight: .medium))
+                            .font(.app(size: 20).weight(.medium))
                             .foregroundColor(.primary.opacity(0.8))
                             .frame(width: 50, height: 50)
                             .background(Color.secondary.opacity(0.1))

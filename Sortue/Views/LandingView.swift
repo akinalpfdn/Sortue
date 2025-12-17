@@ -23,7 +23,7 @@ struct LandingView: View {
                     if currentPage < 3 {
                         Button(action: onDismiss) {
                             Text("skip")
-                                .font(.system(size: 16, weight: .medium))
+                                .font(.app(size: 16).weight(.medium))
                                 .foregroundColor(.gray)
                         }
                     }
@@ -76,12 +76,12 @@ struct LandingView: View {
                     }) {
                         HStack {
                             Text(currentPage >= 3 ? "start_sorting" : "continue")
-                                .font(.headline)
+                                .font(.app(.headline))
                                 .fontWeight(.bold)
                             
                             if currentPage < 3 {
                                 Image(systemName: "arrow.right")
-                                    .font(.system(size: 16, weight: .bold))
+                                    .font(.app(size: 16).weight(.bold))
                             }
                         }
                         .foregroundColor(.white)
@@ -130,12 +130,12 @@ struct OnboardingPageContent: View {
             // Text Content
             VStack(spacing: 12) {
                 Text(titleForPage(page))
-                    .font(.system(size: 28, weight: .bold))
+                    .font(.app(size: 28).weight(.bold))
                     .foregroundColor(.primary.opacity(0.8))
                     .multilineTextAlignment(.center)
                 
                 Text(descriptionForPage(page))
-                    .font(.body)
+                    .font(.app(.body))
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .lineLimit(nil)
@@ -348,7 +348,7 @@ struct LandingTileView: View {
                                 .frame(width: 6, height: 6)
                         } else if isCorrectlyPlaced {
                             Image(systemName: "checkmark")
-                                .font(.system(size: 10, weight: .bold))
+                                .font(.app(size: 10).weight(.bold))
                                 .foregroundColor(.white.opacity(0.5))
                         }
                     }
@@ -391,7 +391,7 @@ struct WelcomeAnimation: View {
             
             // "S" Logo
             Text("S")
-                .font(.system(size: 100, weight: .black))
+                .font(.app(size: 100).weight(.black))
                 .foregroundStyle(
                     LinearGradient(
                         colors: [.indigo, .purple],
@@ -435,7 +435,7 @@ struct SwapMechanicAnimation: View {
             
             // Finger
             Image(systemName: "hand.point.up.left.fill")
-                .font(.system(size: 48))
+                .font(.app(size: 48))
                 .foregroundColor(.black.opacity(0.5))
                 .offset(x: -30 + offset, y: 30) // Follows left tile
                 .opacity(isResetting ? 0 : 1)

@@ -35,9 +35,9 @@ struct GameView: View {
                     }
                     
                     VStack(alignment: .leading) {
-                        Text("Sortue").font(.title2).fontWeight(.bold)
+                        Text("Sortue").font(.app(.title2)).fontWeight(.bold)
                         Text(String(format: NSLocalizedString("level_display", comment: ""), vm.currentLevel, vm.gridDimension, vm.gridDimension, vm.moves))
-                            .font(.caption).foregroundColor(.gray).textCase(.uppercase)
+                            .font(.app(.caption)).foregroundColor(.gray).textCase(.uppercase)
                     }
                     Spacer()
                     
@@ -127,11 +127,11 @@ struct GameView: View {
                 VStack(spacing: 10) {
                     HStack {
                         Text("grid_size")
-                            .font(.subheadline)
+                            .font(.app(.subheadline))
                             .fontWeight(.medium)
                         Spacer()
                         Text("\(vm.gridDimension)x\(vm.gridDimension)")
-                            .font(.subheadline)
+                            .font(.app(.subheadline))
                             .foregroundColor(.secondary)
                     }
                     
@@ -381,7 +381,7 @@ struct TileView: View {
                         } else if isCorrectlyPlaced {
                             // "Locked" visual feedback for correctly placed mutable tiles
                             Image(systemName: "checkmark")
-                                .font(.system(size: 10, weight: .bold))
+                                .font(.app(size: 12).weight(.bold))
                                 .foregroundColor(.white.opacity(0.5))
                                 .transition(.scale.combined(with: .opacity))
                         }
@@ -417,7 +417,7 @@ struct CircleButton: View {
     var body: some View {
         Button(action: action) {
             Image(systemName: icon)
-                .font(.system(size: 18, weight: .semibold))
+                .font(.app(size: 18).weight(.semibold))
                 .foregroundColor(.primary)
                 .frame(width: 44, height: 44)
                 .background(Color.white)

@@ -12,6 +12,7 @@ struct SortueApp: App {
                     AudioManager.shared.playBackgroundMusic()
                     RateManager.shared.appDidLaunch()
                 }
+                .font(.app(.body))
                 .onChange(of: scenePhase) { newPhase in
                     switch newPhase {
                     case .active:

@@ -15,7 +15,7 @@ struct SolutionOverlay: View {
             
             VStack(spacing: 16) {
                 Text("Target Gradient")
-                    .font(.headline)
+                    .font(.app(.headline))
                     .foregroundColor(.white)
                     .padding(.top, 10)
                     .shadow(radius: 4)

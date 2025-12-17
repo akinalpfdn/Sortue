@@ -19,25 +19,25 @@ struct SettingsOverlay: View {
                         .frame(width: 80, height: 80)
                     
                     Image(systemName: "gearshape.fill")
-                        .font(.system(size: 36))
+                        .font(.app(size: 36))
                         .foregroundStyle(Color.gray)
                 }
                 .padding(.top, 8)
                 
                 Text("settings")
-                    .font(.system(size: 28, weight: .bold, design: .default))
+                    .font(.app(size: 28).weight(.bold))
                     .foregroundStyle(.primary)
                 
                 // Settings List
                 VStack(spacing: 20) {
                     HStack {
                         Image(systemName: "music.note")
-                            .font(.system(size: 20))
+                            .font(.app(size: 20))
                             .foregroundColor(.indigo)
                             .frame(width: 30)
                         
                         Text("music")
-                            .font(.body)
+                            .font(.app(.body))
                             .fontWeight(.medium)
                         
                         Spacer()

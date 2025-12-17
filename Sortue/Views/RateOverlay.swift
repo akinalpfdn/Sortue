@@ -21,7 +21,7 @@ struct RateOverlay: View {
                         .frame(width: 80, height: 80)
                     
                     Image(systemName: "star.fill")
-                        .font(.system(size: 36, weight: .light))
+                        .font(.app(size: 36).weight(.light))
                         .foregroundStyle(
                             LinearGradient(colors: [.yellow, .orange], startPoint: .topLeading, endPoint: .bottomTrailing)
                         )
@@ -31,11 +31,11 @@ struct RateOverlay: View {
                 // Typography
                 VStack(spacing: 8) {
                     Text("enjoying_sortue")
-                        .font(.system(size: 28, weight: .semibold, design: .default))
+                        .font(.app(size: 28).weight(.semibold))
                         .foregroundStyle(.primary)
                     
                     Text("rate_message")
-                        .font(.system(size: 16, weight: .medium, design: .default))
+                        .font(.app(size: 16).weight(.medium))
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 10)
