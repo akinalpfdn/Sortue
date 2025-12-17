@@ -59,7 +59,13 @@ struct GameView: View {
                 }
                 .padding(.horizontal).padding(.top)
                 HStack(spacing: 12) {
+                    Text(String(format: NSLocalizedString("min_moves", comment: ""), vm.minMoves))
+                        .font(.app(.subheadline))
+                        .fontWeight(.medium)
+                        .foregroundColor(.secondary)
+                    
                     Spacer()
+                    
                     if vm.gameMode != .pure {
                         CircleButton(icon: "eye.fill", action: showPreview)
                             .disabled(vm.status != .playing || showSolutionPreview)
@@ -71,7 +77,8 @@ struct GameView: View {
                         CircleButton(icon: "shuffle", action: { vm.startNewGame() })
                             .disabled(vm.status == .preview)
                     }
-                } 
+                }
+                .padding(.horizontal) 
                 
                 // Game Grid
                 ZStack(alignment: .topLeading) {

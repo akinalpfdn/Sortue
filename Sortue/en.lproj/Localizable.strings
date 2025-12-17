@@ -5,8 +5,11 @@
 
 /* Game View */
 "level_display" = "Level %d • %dx%d • %d Moves";
+"level_display_precision" = "Level %d • %dx%d • %d Move Left";
 "grid_size" = "Grid Size";
 "next_level" = "Next Level";
+"out_of_moves" = "You have run out of moves! Try again.";
+"min_moves" = "Min Moves: %d";
 
 /* Rate Overlay */
 "enjoying_sortue" = "Enjoying Sortue?";

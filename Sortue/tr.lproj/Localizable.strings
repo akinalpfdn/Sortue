@@ -5,8 +5,11 @@
 
 /* Game View */
 "level_display" = "Seviye %d • %dx%d • %d Hamle";
+"level_display_precision" = "Seviye %d • %dx%d • %d Hamlen Kaldı";
 "grid_size" = "Izgara Boyutu";
 "next_level" = "Sonraki Seviye";
+"out_of_moves" = "Hamlelerin tükendi! Tekrar dene.";
+"min_moves" = "Min Hamle: %d";
 
 /* Rate Overlay */
 "enjoying_sortue" = "Sortue'yu sevdin mi?";
