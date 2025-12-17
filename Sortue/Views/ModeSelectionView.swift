@@ -69,11 +69,26 @@ struct ModeSelectionView: View {
                     Spacer()
                     
                     // Wheel Picker
-                    CustomWheelPicker(
-                        selection: $selectedMode,
-                        items: GameMode.allCases
-                    )
+                    WheelPicker(
+                        items: GameMode.allCases,
+                        initialIndex: GameMode.allCases.firstIndex(of: selectedMode) ?? 0,
+                        visibleItemsCount: 3,
+                        itemHeight: 50,
+                        onSelectionChanged: { index in
+                            let modes = GameMode.allCases
+                            if index >= 0 && index < modes.count {
+                                selectedMode = modes[index]
+                            }
+                        }
+                    ) { mode, isSelected in
+                        Text(mode.name)
+                            .font(.app(size: 22))
+                            .fontWeight(isSelected ? .bold : .medium)
+                            .tracking(2)
+                            .foregroundColor(isSelected ? .black : .gray.opacity(0.6))
+                    }
                     .frame(height: 150)
+
                     
                     Spacer()
                         .frame(height: 32)
@@ -107,45 +122,6 @@ struct ModeSelectionView: View {
         case .precision: return "ladder_Text"
         case .pure: return "challenge_Text"
         }
-    }
-}
-
-// MARK: - Custom Wheel Picker
-struct CustomWheelPicker: View {
-    @Binding var selection: GameMode
-    let items: [GameMode]
-    
-    var body: some View {
-        // Simplified wheel picker using actual Picker with WheelStyle
-        // Getting SwiftUI Picker to look exactly like the custom Compose one is tricky.
-        // Let's try to mimic the look with a custom view instead of standard Picker if needed.
-        // But for "exact same view", a standard Picker is visually different (gray background bars).
-        // Let's build a custom stack.
-        
-        let itemHeight: CGFloat = 50
-        
-        VStack(spacing: 0) {
-            ForEach(items, id: \.self) { mode in
-                Text(mode.name)
-                    .font(.app(size: 22).weight(.bold))
-                    .tracking(2)
-                    .foregroundColor(selection == mode ? .black : .gray.opacity(0.5))
-                    .frame(height: itemHeight)
-                    .scaleEffect(selection == mode ? 1.2 : 0.9)
-                    .animation(.spring(), value: selection)
-                    .onTapGesture {
-                        withAnimation {
-                            selection = mode
-                        }
-                    }
-            }
-        }
-        // This is a simplified "static" version. A true wheel requires scrolling.
-        // Given the short list (3 items), a static list where you tap to select is probably better UX than a scroll for just 3 items,
-        // unless recreating the scrolling physics is critical. The user said "implement exact same view".
-        // The Compose View uses a WheelPicker, implying scrolling.
-        // Let's try to wrap it in a pseudo-scrollable container or just present them vertically.
-        // Actually, with 3 items, showing them all is cleaner.
     }
 }
 
