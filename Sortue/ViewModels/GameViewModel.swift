@@ -90,7 +90,16 @@ class GameViewModel: ObservableObject {
             corners = current
         } else {
             // Use Curated Strategy
-            corners = generateHarmoniousCorners()
+            let seed: UInt64?
+            if gameMode == .casual {
+                seed = nil
+            } else {
+                // Unique seed per mode
+                // Pure mode gets a bitflip mask to be different from Precision
+                let modeMask: UInt64 = (gameMode == .pure) ? 0x5555_5555_5555_5555 : 0
+                seed = UInt64(currentLevel) ^ modeMask
+            }
+            corners = generateHarmoniousCorners(seed: seed)
             currentCorners = corners
         }
         
@@ -124,19 +133,33 @@ class GameViewModel: ObservableObject {
         self.tiles = newTiles
         
         // 3. Schedule Shuffle
+        // 3. Schedule Shuffle
+        let shuffleSeed: UInt64?
+        if gameMode == .casual {
+            shuffleSeed = nil
+        } else {
+            let modeMask: UInt64 = (gameMode == .pure) ? 0x5555_5555_5555_5555 : 0
+            shuffleSeed = UInt64(currentLevel) ^ modeMask
+        }
+        
         shuffleTask = Task {
             try? await Task.sleep(nanoseconds: 2_500_000_000) // 2.5s
             if !Task.isCancelled {
-                await MainActor.run { self.shuffleBoard() }
+                await MainActor.run { self.shuffleBoard(seed: shuffleSeed) }
             }
         }
     }
     
-    private func shuffleBoard() {
+    private func shuffleBoard(seed: UInt64? = nil) {
         var mutableTiles = tiles.filter { !$0.isFixed }
         let fixedTiles = tiles.filter { $0.isFixed }
         
-        mutableTiles.shuffle()
+        if let seed = seed {
+            var rng = SeededGenerator(seed: seed)
+            mutableTiles.shuffle(using: &rng)
+        } else {
+            mutableTiles.shuffle()
+        }
         
         var finalGrid = Array(repeating: Tile?.none, count: gridDimension * gridDimension)
         
@@ -214,7 +237,15 @@ class GameViewModel: ObservableObject {
     }
     
     // Generates aesthetically pleasing palettes using Curated Harmony Profiles
-    private func generateHarmoniousCorners() -> (tl: RGBData, tr: RGBData, bl: RGBData, br: RGBData) {
+    private func generateHarmoniousCorners(seed: UInt64? = nil) -> (tl: RGBData, tr: RGBData, bl: RGBData, br: RGBData) {
+        
+        // Setup RNG
+        var rng: RandomNumberGenerator
+        if let seed = seed {
+            rng = SeededGenerator(seed: seed)
+        } else {
+            rng = SystemRandomNumberGenerator()
+        }
         
         // We define specific "Vibes" that are guaranteed to look good.
         // No more random "Green + Brown" accidents.
@@ -228,10 +259,10 @@ class GameViewModel: ObservableObject {
             case midnight    // Deep Blues, Purples, Dark Greys
         }
         
-        let profile = HarmonyProfile.allCases.randomElement()!
+        let profile = HarmonyProfile.allCases.randomElement(using: &rng)!
         
         // Helper to randomize slightly within a safe range
-        func rnd(_ range: ClosedRange<Double>) -> Double { Double.random(in: range) }
+        func rnd(_ range: ClosedRange<Double>) -> Double { Double.random(in: range, using: &rng) }
         
         var h1, s1, b1: Double
         var h2, s2, b2: Double
@@ -346,7 +377,7 @@ class GameViewModel: ObservableObject {
 
         // Rotate/Shuffle assignments so "Light" isn't always Top-Left
         // We pick a random rotation for the corner assignment
-        let rotation = Int.random(in: 0...3)
+        let rotation = Int.random(in: 0...3, using: &rng)
         
         let tl, tr, bl, br: RGBData
         
