@@ -193,6 +193,23 @@ struct GameView: View {
             if vm.status == .animating {
                 ParticleSystem()
             }
+            
+            // Right Edge Back Gesture Zone (Emulates modern/Android back behavior)
+            HStack {
+                Spacer()
+                Color.clear
+                    .frame(width: 20)
+                    .contentShape(Rectangle())
+                    .gesture(
+                        DragGesture()
+                            .onEnded { value in
+                                // Detect swipe from right to left
+                                if value.translation.width < -50 {
+                                    onBack?()
+                                }
+                            }
+                    )
+            }
         }
         .onAppear {
             if vm.gameMode != mode {

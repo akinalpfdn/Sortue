@@ -11,39 +11,11 @@ struct ContentView: View {
         case game(GameMode)
     }
 
+    @State private var path = NavigationPath()
+
     var body: some View {
         ZStack {
-            switch appState {
-            case .landing:
-                LandingView(onDismiss: {
-                    withAnimation { appState = .modeSelection }
-                })
-                .transition(.opacity)
-                .zIndex(2)
-                
-            case .modeSelection:
-                ModeSelectionView(
-                    onStartGame: { mode in
-                        withAnimation { appState = .game(mode) }
-                    },
-                    onSettingsClick: { withAnimation { showSettings = true } },
-                    onAboutClick: { withAnimation { showAbout = true } }
-                )
-                .transition(.opacity)
-                .zIndex(1)
-                
-            case .game(let mode):
-                GameView(
-                    mode: mode,
-                    onBack: {
-                        withAnimation { appState = .modeSelection }
-                    }
-                )
-                .transition(.opacity)
-                .zIndex(0)
-            }
-            
-            // Rate Popup logic
+            // Rate Popup logic (global overlay)
             if rateManager.showRatePopup && appState != .landing {
                 RateOverlay(
                     onRate: rateManager.rateNow,
@@ -60,6 +32,40 @@ struct ContentView: View {
             if showSettings {
                 SettingsOverlay(onDismiss: { withAnimation { showSettings = false } })
                     .zIndex(100)
+            }
+            
+            if appState == .landing {
+                LandingView(onDismiss: {
+                    withAnimation { appState = .modeSelection }
+                })
+                .transition(.opacity)
+                .zIndex(2)
+            } else {
+                NavigationStack(path: $path) {
+                    ModeSelectionView(
+                        onStartGame: { mode in
+                            path.append(mode)
+                        },
+                        onSettingsClick: { withAnimation { showSettings = true } },
+                        onAboutClick: { withAnimation { showAbout = true } }
+                    )
+                    .navigationDestination(for: GameMode.self) { mode in
+                        GameView(
+                            mode: mode,
+                            onBack: {
+                                path.removeLast()
+                            }
+                        )
+                        .navigationBarBackButtonHidden(true) // We will use custom button OR swipe
+                        // If user wants NATIVE back navigation, usually that implies the back button in standard places OR just the swipe.
+                        // If we hide the back button, the swipe gesture normally still works IF we enable it via UIGestureRecognizerDelegate trick or if we don't hide it.
+                        // But user has a custom top bar in GameView.
+                        // So we usually hide the system bar.
+                        // When system bar is hidden, native swipe gesture is disabled by default in SwiftUI unless re-enabled.
+                        // I will add the logic to re-enable swipe back gesture.
+                    }
+                }
+                .zIndex(1)
             }
         }
         .onAppear {
