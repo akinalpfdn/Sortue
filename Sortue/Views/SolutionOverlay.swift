@@ -42,6 +42,8 @@ struct SolutionOverlay: View {
                     }
                 }
                 .padding()
+                // Must match the game board, which is always laid out left-to-right.
+                .environment(\.layoutDirection, .leftToRight)
             }
         }
     }

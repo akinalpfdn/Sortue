@@ -90,7 +90,7 @@ struct ModeSelectionView: View {
                         Text(mode.name)
                             .font(.app(size: 22))
                             .fontWeight(isSelected ? .bold : .medium)
-                            .tracking(2)
+                            .tracking(modeNameTracking)
                             .foregroundColor(isSelected ? .black : .gray.opacity(0.6))
                     }
                     .frame(height: 150)
@@ -133,6 +133,11 @@ struct ModeSelectionView: View {
         }
     }
     
+    // Letter spacing breaks the joined letters of Arabic and Devanagari, so it is only applied to other scripts.
+    private var modeNameTracking: CGFloat {
+        ["ar", "hi"].contains(Bundle.main.preferredLocalizations.first) ? 0 : 2
+    }
+    
     private func getModeDescription(_ mode: GameMode) -> LocalizedStringKey {
         switch mode {
         case .casual: return "casual_Text"
@@ -158,6 +163,8 @@ struct MosaicPlayButton: View {
                         .clipShape(TriangleShape())
                 )
         }
+        // A play triangle always points right, even in right-to-left languages.
+        .environment(\.layoutDirection, .leftToRight)
     }
 }
 

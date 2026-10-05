@@ -80,7 +80,7 @@ struct LandingView: View {
                                 .fontWeight(.bold)
                             
                             if currentPage < 3 {
-                                Image(systemName: "arrow.right")
+                                Image(systemName: "arrow.forward")
                                     .font(.app(size: 16).weight(.bold))
                             }
                         }

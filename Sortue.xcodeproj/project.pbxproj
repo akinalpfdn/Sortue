@@ -126,6 +126,19 @@
 				id,
 				th,
 				vi,
+				ar,
+				he,
+				hi,
+				ms,
+				ro,
+				hu,
+				el,
+				sk,
+				hr,
+				ca,
+				"es-419",
+				"fr-CA",
+				"pt-PT",
 			);
 			mainGroup = F4F5C1BD2EDF7A9E003198A4;
 			minimizedProjectReferenceProxies = 1;

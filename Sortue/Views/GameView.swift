@@ -32,7 +32,7 @@ struct GameView: View {
                         
                         if let onBack = onBack {
                             Button(action: onBack) {
-                                Label("back_to_menu", systemImage: "arrow.left")
+                                Label("back_to_menu", systemImage: "arrow.backward")
                             }
                         }
                         
@@ -165,6 +165,8 @@ struct GameView: View {
                         .allowsHitTesting(false)
                     }
                 }
+                // Board geometry and drop-target math assume left-to-right columns; keep it unmirrored in RTL languages.
+                .environment(\.layoutDirection, .leftToRight)
                 
                 Spacer()
                 
@@ -256,6 +258,7 @@ struct GameView: View {
                             }
                     )
             }
+            .environment(\.layoutDirection, .leftToRight)
         }
         .onAppear {
             if vm.gameMode != mode {

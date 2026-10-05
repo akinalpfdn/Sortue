@@ -68,7 +68,7 @@ struct WinOverlay: View {
                         HStack {
                             Text("next_level")
                                 .fontWeight(.semibold)
-                            Image(systemName: "arrow.right")
+                            Image(systemName: "arrow.forward")
                         }
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
