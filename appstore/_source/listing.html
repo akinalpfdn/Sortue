@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sortue — localized App Store artwork</title>
+<style>
+@font-face{font-family:Varela;src:url('../en/assets/VarelaRound-Regular.ttf')}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{font-family:Varela,Arial,sans-serif;color:#29253b}.art{width:660px;height:1434px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 0% 36%,#f4dced 0,transparent 57%),radial-gradient(ellipse at 100% 88%,#d9eafd 0,transparent 64%),#fdfbff;isolation:isolate}.brand{position:absolute;left:48px;top:46px;display:flex;gap:11px;align-items:center;font-size:25px;letter-spacing:-1px}.brand img{width:39px;height:39px;border-radius:10px;box-shadow:0 3px 8px #806e8f0c}.eyebrow{position:absolute;right:48px;top:61px;color:#8d8099;font-size:10px;letter-spacing:2.1px;text-transform:uppercase}.copy{position:absolute;left:48px;right:30px;top:142px;z-index:3}h1{font-size:65px;font-weight:400;line-height:1.09;letter-spacing:-3.6px;margin:0}h1 em{font-style:normal;color:#9358a7}.desc{font-size:21px;line-height:1.55;color:#776c85;margin:23px 0 0;letter-spacing:-.3px}.device{position:absolute;left:66px;top:418px;width:528px;padding:9px;border-radius:61px;background:linear-gradient(125deg,#fff,#e8e2ef 48%,#fff);box-shadow:0 32px 65px #58416923,0 0 0 1px #ffffffd0;transform:rotate(-3deg)}.device:after{content:'';position:absolute;inset:4px;border:1px solid #cfc7d83f;border-radius:56px;pointer-events:none}.device img{display:block;width:100%;border-radius:52px}.crop{position:relative;overflow:hidden;aspect-ratio:1;background:white;border-radius:10px}.crop img{position:absolute;display:block;max-width:none;height:auto}.board{position:absolute;padding:18px;border:1px solid #fff;background:#fff;box-shadow:0 26px 55px #5c457f18;border-radius:31px}.section-label{color:#877496;letter-spacing:2px;font-size:11px;text-transform:uppercase}.under{position:absolute;left:48px;right:48px;color:#776c85;font-size:18px;line-height:1.6}.under strong{font-weight:400;color:#594668}.swatches{display:flex;gap:9px;margin-top:19px}.swatches span{width:36px;height:36px;border-radius:9px}.footer{position:absolute;left:48px;right:48px;bottom:45px;display:flex;justify-content:space-between;align-items:center;color:#8c8096;font-size:11px;letter-spacing:1.6px;text-transform:uppercase}.footer .line{height:1px;flex:1;background:#bfaecb50;margin:0 20px}.orb{position:absolute;border-radius:27px;background:linear-gradient(135deg,#cf9edc80,#899ede50);width:115px;height:115px;right:-76px;top:365px;transform:rotate(16deg);z-index:0}.two .art{background:radial-gradient(ellipse at 0% 70%,#dcf0f7 0,transparent 70%),radial-gradient(ellipse at 100% 5%,#f3e0f3 0,transparent 60%),#fcfbff}.two h1 em{color:#617cab}.two .board.main{width:560px;left:50px;top:445px;transform:rotate(-3deg)}.two .under{top:1063px}.two .caption{position:absolute;top:393px;left:53px}.three .art{background:radial-gradient(ellipse at 0% 25%,#f8e0ed 0,transparent 64%),radial-gradient(ellipse at 95% 100%,#dce7fc 0,transparent 70%),#fdfbfe}.three .small{left:52px;top:434px;width:283px;transform:rotate(-5deg);z-index:2}.three .large{right:41px;top:761px;width:470px;transform:rotate(4deg)}.board .tag{display:block;font-size:13px;color:#8a7898;letter-spacing:1px;padding:0 3px 13px}.three .connector{position:absolute;left:105px;top:786px;color:#9d86b2;font-size:54px}.three .under{top:1288px;font-size:17px}.four .art{background:radial-gradient(ellipse at 5% 65%,#efdcf6 0,transparent 65%),radial-gradient(ellipse at 100% 100%,#d7eafa 0,transparent 65%),#fdfbff}.four h1{font-size:62px}.four .palette-a{width:365px;left:36px;top:448px;transform:rotate(-8deg);z-index:1}.four .palette-b{width:382px;right:30px;top:697px;transform:rotate(8deg);z-index:2}.four .palette-c{width:348px;left:51px;top:968px;transform:rotate(-5deg);z-index:3}.ipad .art{width:1032px;height:1376px}.ipad .brand{left:65px;top:48px;font-size:29px}.ipad .brand img{width:44px;height:44px}.ipad .eyebrow{right:65px;top:66px;font-size:12px}.ipad .copy{top:148px;left:65px;right:55px}.ipad h1{font-size:85px;letter-spacing:-4.5px;line-height:1.04}.ipad .desc{font-size:25px;margin-top:24px}.ipad .footer{left:65px;right:65px;bottom:39px;font-size:12px}.ipad .board.hero{width:835px;left:98px;top:446px;transform:rotate(-2deg);border-radius:42px;padding:23px}.ipad .crop{border-radius:14px}.ipad.two .board.main{width:760px;left:135px;top:449px;transform:rotate(-3deg);padding:24px}.ipad.two .caption{top:405px;left:140px;font-size:13px}.ipad.two .under{top:1251px;left:145px;font-size:19px}.ipad.two .swatches{position:absolute;right:0;top:-5px;margin:0}.ipad.two .swatches span{width:30px;height:30px}.ipad.three .small{left:73px;top:491px;width:355px}.ipad.three .large{width:603px;right:61px;top:687px}.ipad.three .connector{left:173px;top:919px}.ipad.three .under{top:405px;left:65px;font-size:20px}.ipad .board .tag{font-size:15px;padding-bottom:17px}.ipad.four .palette-a{width:493px;left:72px;top:496px}.ipad.four .palette-b{width:510px;right:56px;top:659px}.ipad.four .palette-c{width:455px;left:166px;top:886px}.ipad .orb{width:170px;height:170px;right:-108px;top:427px}.ipad.four .footer{display:none}
+.footer{display:none}
+
+/* Readability: all added copy passes the 320px-wide store preview. */
+.eyebrow,.caption,.under,.footer{display:none}
+.brand{font-size:34px;color:#473951;gap:13px}.brand img{width:46px;height:46px}
+.copy{top:143px;right:45px}.desc{font-size:38px;line-height:1.24;color:#594d69;letter-spacing:-.8px;margin-top:27px}
+.device{top:518px}.two .board.main{top:554px}
+.three .small{top:520px;width:266px}.three .large{top:867px;width:430px;right:43px}
+.board .tag{font-size:34px;line-height:1.2;letter-spacing:0;color:#594d69;padding-bottom:16px}
+.three .connector{top:832px;left:100px}
+.four .palette-a{top:527px;width:335px}.four .palette-b{top:790px;width:350px}.four .palette-c{top:1040px;width:316px}
+.ipad .brand{font-size:53px;gap:16px}.ipad .brand img{width:61px;height:61px}
+.ipad .copy{top:154px;right:55px}.ipad h1{font-size:96px;line-height:1.04;letter-spacing:-5px}
+.ipad .desc{font-size:59px;line-height:1.2;letter-spacing:-1.2px;margin-top:25px}
+.ipad .board.hero{top:576px;width:735px;left:148px}
+.ipad.two .board.main{top:581px;width:720px;left:156px}
+.ipad.three .small{top:592px;left:73px;width:320px}.ipad.three .large{top:763px;right:65px;width:505px}
+.ipad .board .tag{font-size:52px;line-height:1.16;letter-spacing:0;padding-bottom:17px}
+.ipad.three .connector{left:175px;top:995px}
+.ipad.four .palette-a{top:603px;width:424px;left:70px}.ipad.four .palette-b{top:784px;width:441px;right:65px}.ipad.four .palette-c{top:1000px;width:348px;left:181px}
+
+/* Localization layer. Base layout above is unchanged from en/listing.html. */
+@font-face{font-family:SortueRoundCyr;src:url('file:///System/Library/Fonts/SFNSRounded.ttf');unicode-range:U+0400-04FF}
+@font-face{font-family:SortueRoundAr;src:url('file:///System/Library/Fonts/SFArabicRounded.ttf');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFF}
+body{font-family:Varela,SortueRoundCyr,SortueRoundAr,system-ui,Arial,sans-serif}
+h1 .l,.desc .l{display:block;white-space:nowrap}
+:lang(ja) body,body:lang(ja){font-family:Varela,'Hiragino Maru Gothic ProN','Hiragino Sans',sans-serif}
+:lang(zh-Hans) body,body:lang(zh-Hans){font-family:Varela,'PingFang SC','Hiragino Sans GB',sans-serif}
+:lang(zh-Hant) body,body:lang(zh-Hant){font-family:Varela,'PingFang TC',sans-serif}
+:lang(ko) body,body:lang(ko){font-family:Varela,'Apple SD Gothic Neo',sans-serif}
+:lang(th) body,body:lang(th){font-family:Varela,'Thonburi',sans-serif}
+:lang(hi) body,body:lang(hi){font-family:Varela,'Kohinoor Devanagari','Devanagari Sangam MN',sans-serif}
+/* Tight negative tracking only suits Latin, Greek and Cyrillic; it breaks joined or square scripts. */
+.wide-script h1,.wide-script .desc{letter-spacing:0}
+.tall-script h1{line-height:1.22}.tall-script .desc{line-height:1.38}
+.ipad.tall-script h1{line-height:1.12}.ipad.tall-script .desc{line-height:1.28}
+[dir=rtl] .brand{left:auto;right:48px}[dir=rtl].ipad .brand{right:65px}
+[dir=rtl] .copy{left:45px;right:48px}[dir=rtl].ipad .copy{left:55px;right:65px}
+</style><script src="copy.js"></script></head><body><main class="art"><div class="brand" data-store-role="label"><img src="../en/assets/icon.png" alt="">sortue</div><div class="copy"></div><div class="orb"></div><div id="visual"></div></main>
+<script>
+const p=new URLSearchParams(location.search),device=p.get('device')==='ipad'?'ipad':'iphone',n=Math.max(1,Math.min(4,Number(p.get('slide'))||1)),pad=device==='ipad';
+const locale=COPY[p.get('locale')]?p.get('locale'):'en-US',lang=locale.replace(/-(US|DE|FR|ES|NL|SA)$/,'').replace(/^no$/,'nb');
+const rtl=['ar','he'].includes(lang),wide=['ja','ko','zh-Hans','zh-Hant','th','hi','ar'].includes(lang),tall=['th','hi','ar','vi'].includes(lang);
+document.documentElement.lang=lang;if(rtl)document.body.dir='rtl';
+const [h1a,h1b,d1,d2]=COPY[locale][n-1],esc=t=>t.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'})[c]);
+const cls=['one','two','three','four'][n-1];
+document.body.className=[device,cls,wide?'wide-script':'',tall?'tall-script':''].join(' ').trim();if(rtl)document.body.dir='rtl';
+document.querySelector('.copy').innerHTML=`<h1 data-store-role="headline"><span class="l">${esc(h1a)}</span><em class="l">${esc(h1b)}</em></h1><p data-store-role="support" class="desc"><span class="l">${esc(d1)}</span><span class="l">${esc(d2)}</span></p>`;
+const crops={
+ 'iphone-small':{w:1206,x:96,y:777,size:1014},
+ 'iphone-violet':{w:1206,x:96,y:777,size:1014},
+ 'iphone-blue':{w:1206,x:96,y:777,size:1014},
+ 'iphone-win':{w:1206,x:96,y:777,size:1014},
+ 'ipad-green':{w:1640,x:64,y:375,size:1512},
+ 'ipad-multi':{w:1640,x:64,y:375,size:1512},
+ 'ipad-teal':{w:1640,x:64,y:375,size:1512}
+};
+function crop(key){const c=crops[key];return `<div class="crop"><img src="../en/assets/${key}.png" alt="Sortue color puzzle" style="width:${c.w/c.size*100}%;left:${-c.x/c.size*100}%;top:${-c.y/c.size*100}%"></div>`}
+function board(key,cls,label=''){return `<div class="board ${cls}">${label?`<span class="tag" data-store-role="label">${label}</span>`:''}${crop(key)}</div>`}
+let html='';
+if(n===1)html=pad?board('ipad-teal','hero'):`<div class="device"><img src="../en/assets/iphone-violet.png" alt="Sortue on iPhone"></div>`;
+if(n===2)html=board(pad?'ipad-multi':'iphone-blue','main');
+if(n===3)html=board(pad?'ipad-green':'iphone-small','small','4 × 4')+`<div class="connector" data-store-ignore="icon">↳</div>`+board(pad?'ipad-teal':'iphone-violet','large',pad?'11 × 11':'7 × 7');
+if(n===4)html=board(pad?'ipad-multi':'iphone-violet','palette-a')+board(pad?'ipad-teal':'iphone-blue','palette-b')+board(pad?'ipad-green':'iphone-win','palette-c');
+document.querySelector('#visual').innerHTML=html;document.title=`Sortue ${locale} ${device} ${n}`;
+// Shrink a line group until every line fits the copy column, but never below the 320px-preview minimum.
+window.layoutReady=document.fonts.ready.then(()=>{
+ const W=document.querySelector('.art').clientWidth,copy=document.querySelector('.copy');
+ const fit=(el,minPx)=>{let size=parseFloat(getComputedStyle(el).fontSize);const lines=[...el.querySelectorAll('.l')];
+  while(size>minPx&&lines.some(l=>l.scrollWidth>copy.clientWidth)){size=Math.max(minPx,size-0.5);el.style.fontSize=size+'px'}
+  if(lines.some(l=>l.scrollWidth>copy.clientWidth))lines.forEach(l=>l.style.whiteSpace='normal');};
+ fit(copy.querySelector('h1'),Math.ceil(28*W/320*10)/10);fit(copy.querySelector('.desc'),Math.ceil(18*W/320*10)/10);
+ const vis=[...document.querySelectorAll('#visual .device,#visual .board')].map(e=>e.getBoundingClientRect().top);
+ window.layout={copyBottom:copy.getBoundingClientRect().bottom,visualTop:Math.min(...vis),wrapped:[...copy.querySelectorAll('.l')].some(l=>l.style.whiteSpace==='normal')};
+});
+</script></body></html>

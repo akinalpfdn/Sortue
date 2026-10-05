@@ -1,0 +1,390 @@
+[
+  {
+    "frame": "iphone/01-color-and-calm",
+    "layout": {
+      "copyBottom": 405.90625,
+      "visualTop": 504.9554138183594,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "一点色彩，",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "满心澄明。",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "一次一道谜题，",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "慢慢放松。",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/02-every-shade",
+    "layout": {
+      "copyBottom": 405.90625,
+      "visualTop": 539.7296752929688,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "每种色调，",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "各归其位。",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "交换方块，",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "重拾和谐。",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/03-start-small",
+    "layout": {
+      "copyBottom": 405.90625,
+      "visualTop": 509.0224609375,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "从简单开始，",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "再步步深入。",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "找到你的节奏，",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "从 4 × 4 到 12 × 12。",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "4 × 4",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "7 × 7",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/04-every-mood",
+    "layout": {
+      "copyBottom": 399.375,
+      "visualTop": 505.318603515625,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "百变调色板，",
+        "role": "headline",
+        "previewPx": 30.06,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "契合每种心情。",
+        "role": "headline",
+        "previewPx": 30.06,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "每道谜题，",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "都是全新配色。",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/01-color-and-calm",
+    "layout": {
+      "copyBottom": 520.25,
+      "visualTop": 563.3983154296875,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "一点色彩，",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "满心澄明。",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "一次一道谜题，",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "慢慢放松。",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/02-every-shade",
+    "layout": {
+      "copyBottom": 520.25,
+      "visualTop": 562.6524047851562,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "每种色调，",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "各归其位。",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "交换方块，",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "重拾和谐。",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/03-start-small",
+    "layout": {
+      "copyBottom": 520.25,
+      "visualTop": 578.81103515625,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "从简单开始，",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "再步步深入。",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "找到你的节奏，",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "从 4 × 4 到 12 × 12。",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "4 × 4",
+        "role": "label",
+        "previewPx": 16.12,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "11 × 11",
+        "role": "label",
+        "previewPx": 16.12,
+        "minimum": 16,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/04-every-mood",
+    "layout": {
+      "copyBottom": 520.25,
+      "visualTop": 575.5584716796875,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "百变调色板，",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "契合每种心情。",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "每道谜题，",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "都是全新配色。",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  }
+]

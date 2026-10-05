@@ -1,0 +1,390 @@
+[
+  {
+    "frame": "iphone/01-color-and-calm",
+    "layout": {
+      "copyBottom": 433.46875,
+      "visualTop": 504.9554138183594,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "قليل من اللون.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "وذهن أصفى.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "استرخِ،",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "لغزًا تلو الآخر.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/02-every-shade",
+    "layout": {
+      "copyBottom": 433.46875,
+      "visualTop": 539.7296752929688,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "كل درجة لون",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "في مكانها.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "بدّل المربعات.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "واستعد الانسجام.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/03-start-small",
+    "layout": {
+      "copyBottom": 433.46875,
+      "visualTop": 509.0224609375,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "ابدأ ببساطة.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "ثم تعمّق أكثر.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "اعثر على إيقاعك.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "من 4 × 4 إلى 12 × 12.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "4 × 4",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "7 × 7",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/04-every-mood",
+    "layout": {
+      "copyBottom": 426.125,
+      "visualTop": 505.318603515625,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "لوحة ألوان",
+        "role": "headline",
+        "previewPx": 30.06,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "لكل مزاج.",
+        "role": "headline",
+        "previewPx": 30.06,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "مزيج جديد",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "مع كل لغز.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/01-color-and-calm",
+    "layout": {
+      "copyBottom": 545.0625,
+      "visualTop": 563.3983154296875,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "قليل من اللون.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "وذهن أصفى.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "استرخِ،",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "لغزًا تلو الآخر.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/02-every-shade",
+    "layout": {
+      "copyBottom": 545.0625,
+      "visualTop": 562.6524047851562,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "كل درجة لون",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "في مكانها.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "بدّل المربعات.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "واستعد الانسجام.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/03-start-small",
+    "layout": {
+      "copyBottom": 545.0625,
+      "visualTop": 578.81103515625,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "ابدأ ببساطة.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "ثم تعمّق أكثر.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "اعثر على إيقاعك.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "من 4 × 4 إلى 12 × 12.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "4 × 4",
+        "role": "label",
+        "previewPx": 16.12,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "11 × 11",
+        "role": "label",
+        "previewPx": 16.12,
+        "minimum": 16,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/04-every-mood",
+    "layout": {
+      "copyBottom": 545.0625,
+      "visualTop": 575.5584716796875,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "لوحة ألوان",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "لكل مزاج.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "مزيج جديد",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "مع كل لغز.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  }
+]

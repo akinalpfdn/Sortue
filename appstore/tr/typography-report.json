@@ -1,0 +1,390 @@
+[
+  {
+    "frame": "iphone/01-color-and-calm",
+    "layout": {
+      "copyBottom": 405.90625,
+      "visualTop": 504.9554138183594,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Biraz renk.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Berrak bir zihin.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Her bulmacayla",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "biraz daha rahatla.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/02-every-shade",
+    "layout": {
+      "copyBottom": 405.90625,
+      "visualTop": 539.7296752929688,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Her ton",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "kendi yerinde.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Kareleri değiştir.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "Uyumu geri getir.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/03-start-small",
+    "layout": {
+      "copyBottom": 405.90625,
+      "visualTop": 509.0224609375,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Küçük başla.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Derinleş.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Akışını bul.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "4 × 4’ten 12 × 12’ye.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "4 × 4",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "7 × 7",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/04-every-mood",
+    "layout": {
+      "copyBottom": 399.375,
+      "visualTop": 505.318603515625,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Her ruh haline",
+        "role": "headline",
+        "previewPx": 30.06,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "bir palet.",
+        "role": "headline",
+        "previewPx": 30.06,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Her bulmacada",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "yeni bir renk uyumu.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/01-color-and-calm",
+    "layout": {
+      "copyBottom": 520.25,
+      "visualTop": 563.3983154296875,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Biraz renk.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Berrak bir zihin.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Her bulmacayla",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "biraz daha rahatla.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/02-every-shade",
+    "layout": {
+      "copyBottom": 520.25,
+      "visualTop": 562.6524047851562,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Her ton",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "kendi yerinde.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Kareleri değiştir.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "Uyumu geri getir.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/03-start-small",
+    "layout": {
+      "copyBottom": 520.25,
+      "visualTop": 578.81103515625,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Küçük başla.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Derinleş.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Akışını bul.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "4 × 4’ten 12 × 12’ye.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "4 × 4",
+        "role": "label",
+        "previewPx": 16.12,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "11 × 11",
+        "role": "label",
+        "previewPx": 16.12,
+        "minimum": 16,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/04-every-mood",
+    "layout": {
+      "copyBottom": 520.25,
+      "visualTop": 575.5584716796875,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Her ruh haline",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "bir palet.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Her bulmacada",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "yeni bir renk uyumu.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  }
+]

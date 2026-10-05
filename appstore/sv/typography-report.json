@@ -1,0 +1,390 @@
+[
+  {
+    "frame": "iphone/01-color-and-calm",
+    "layout": {
+      "copyBottom": 405.90625,
+      "visualTop": 504.9554138183594,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Lite färg.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Klarare tankar.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Koppla av,",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "ett pussel i taget.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/02-every-shade",
+    "layout": {
+      "copyBottom": 405.90625,
+      "visualTop": 539.7296752929688,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Varje nyans.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "På sin plats.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Byt plats på rutorna.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "Återställ harmonin.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/03-start-small",
+    "layout": {
+      "copyBottom": 405.90625,
+      "visualTop": 509.0224609375,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Börja enkelt.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Gå djupare.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Hitta ditt flow.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "Från 4 × 4 till 12 × 12.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "4 × 4",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "7 × 7",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/04-every-mood",
+    "layout": {
+      "copyBottom": 399.375,
+      "visualTop": 505.318603515625,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "En palett för",
+        "role": "headline",
+        "previewPx": 30.06,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "varje humör.",
+        "role": "headline",
+        "previewPx": 30.06,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "En ny blandning",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "i varje pussel.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/01-color-and-calm",
+    "layout": {
+      "copyBottom": 520.25,
+      "visualTop": 563.3983154296875,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Lite färg.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Klarare tankar.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Koppla av,",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "ett pussel i taget.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/02-every-shade",
+    "layout": {
+      "copyBottom": 520.25,
+      "visualTop": 562.6524047851562,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Varje nyans.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "På sin plats.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Byt plats på rutorna.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "Återställ harmonin.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/03-start-small",
+    "layout": {
+      "copyBottom": 520.25,
+      "visualTop": 578.81103515625,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Börja enkelt.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Gå djupare.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Hitta ditt flow.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "Från 4 × 4 till 12 × 12.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "4 × 4",
+        "role": "label",
+        "previewPx": 16.12,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "11 × 11",
+        "role": "label",
+        "previewPx": 16.12,
+        "minimum": 16,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/04-every-mood",
+    "layout": {
+      "copyBottom": 520.25,
+      "visualTop": 575.5584716796875,
+      "wrapped": false
+    },
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "En palett för",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "varje humör.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "En ny blandning",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "i varje pussel.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  }
+]
