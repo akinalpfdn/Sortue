@@ -11,7 +11,7 @@ struct GameOverOverlay: View {
             Color.black.opacity(0.4).ignoresSafeArea()
             
             VStack(spacing: 24) {
-                Text("GAME OVER")
+                Text("game_over")
                     .font(.app(.largeTitle))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -28,7 +28,7 @@ struct GameOverOverlay: View {
                     Button(action: onMenu) {
                         HStack {
                             Image(systemName: "list.bullet")
-                            Text("MENU")
+                            Text("menu")
                         }
                         .font(.app(.headline))
                         .foregroundColor(.white)
@@ -47,7 +47,7 @@ struct GameOverOverlay: View {
                     Button(action: onRetry) {
                         HStack {
                             Image(systemName: "arrow.clockwise")
-                            Text("RETRY")
+                            Text("retry")
                         }
                         .font(.app(.headline))
                         .foregroundColor(Color.black)

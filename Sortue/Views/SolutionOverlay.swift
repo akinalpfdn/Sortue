@@ -14,7 +14,7 @@ struct SolutionOverlay: View {
                 .onTapGesture { /* Block taps */ }
             
             VStack(spacing: 16) {
-                Text("Target Gradient")
+                Text("target_gradient")
                     .font(.app(.headline))
                     .foregroundColor(.white)
                     .padding(.top, 10)

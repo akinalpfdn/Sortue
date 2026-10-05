@@ -67,6 +67,10 @@ enum GameMode: String, CaseIterable, Codable {
     case pure
     
     var name: String {
-        return self.rawValue.capitalized
+        switch self {
+        case .casual: return NSLocalizedString("mode_casual", comment: "")
+        case .precision: return NSLocalizedString("mode_precision", comment: "")
+        case .pure: return NSLocalizedString("mode_pure", comment: "")
+        }
     }
 }

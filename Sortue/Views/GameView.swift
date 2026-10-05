@@ -47,10 +47,10 @@ struct GameView: View {
                         Text("Sortue").font(.app(.title2)).fontWeight(.bold)
                         if vm.gameMode == .precision {
                             let remaining = max(0, vm.moveLimit - vm.moves)
-                            Text(String(format: NSLocalizedString("level_display_precision", comment: ""), vm.currentLevel, vm.gridDimension, vm.gridDimension, remaining))
+                            Text(String.localizedStringWithFormat(NSLocalizedString("level_display_precision", comment: ""), vm.currentLevel, vm.gridDimension, vm.gridDimension, remaining))
                                 .font(.app(.caption)).foregroundColor(.gray).textCase(.uppercase)
                         } else {
-                            Text(String(format: NSLocalizedString("level_display", comment: ""), vm.currentLevel, vm.gridDimension, vm.gridDimension, vm.moves))
+                            Text(String.localizedStringWithFormat(NSLocalizedString("level_display", comment: ""), vm.currentLevel, vm.gridDimension, vm.gridDimension, vm.moves))
                                 .font(.app(.caption)).foregroundColor(.gray).textCase(.uppercase)
                         }
                     }
