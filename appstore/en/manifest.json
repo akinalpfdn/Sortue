@@ -1,0 +1,62 @@
+{
+  "html": "listing.html",
+  "out": ".",
+  "frames": [
+    {
+      "name": "iphone/01-color-and-calm",
+      "query": "device=iphone&slide=1",
+      "width": 660,
+      "height": 1434,
+      "scale": 2
+    },
+    {
+      "name": "iphone/02-every-shade",
+      "query": "device=iphone&slide=2",
+      "width": 660,
+      "height": 1434,
+      "scale": 2
+    },
+    {
+      "name": "iphone/03-start-small",
+      "query": "device=iphone&slide=3",
+      "width": 660,
+      "height": 1434,
+      "scale": 2
+    },
+    {
+      "name": "iphone/04-every-mood",
+      "query": "device=iphone&slide=4",
+      "width": 660,
+      "height": 1434,
+      "scale": 2
+    },
+    {
+      "name": "ipad/01-color-and-calm",
+      "query": "device=ipad&slide=1",
+      "width": 1032,
+      "height": 1376,
+      "scale": 2
+    },
+    {
+      "name": "ipad/02-every-shade",
+      "query": "device=ipad&slide=2",
+      "width": 1032,
+      "height": 1376,
+      "scale": 2
+    },
+    {
+      "name": "ipad/03-start-small",
+      "query": "device=ipad&slide=3",
+      "width": 1032,
+      "height": 1376,
+      "scale": 2
+    },
+    {
+      "name": "ipad/04-every-mood",
+      "query": "device=ipad&slide=4",
+      "width": 1032,
+      "height": 1376,
+      "scale": 2
+    }
+  ]
+}

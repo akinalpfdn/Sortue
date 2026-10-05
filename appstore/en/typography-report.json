@@ -1,0 +1,350 @@
+[
+  {
+    "frame": "iphone/01-color-and-calm",
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "A little color.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "A clearer mind.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Unwind, one puzzle",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "at a time.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/02-every-shade",
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Every shade.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "In its place.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Swap the tiles.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "Restore the harmony.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/03-start-small",
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Start small.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Go deeper.",
+        "role": "headline",
+        "previewPx": 31.52,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Find your flow.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "From 4 × 4 to 12 × 12.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "4 × 4",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "7 × 7",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "iphone/04-every-mood",
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.48,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "A palette for",
+        "role": "headline",
+        "previewPx": 30.06,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "every mood.",
+        "role": "headline",
+        "previewPx": 30.06,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "A fresh blend.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "With every puzzle.",
+        "role": "support",
+        "previewPx": 18.42,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/01-color-and-calm",
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "A little color.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "A clearer mind.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Unwind, one puzzle",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "at a time.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/02-every-shade",
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Every shade.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "In its place.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Swap the tiles.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "Restore the harmony.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/03-start-small",
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "Start small.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Go deeper.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "Find your flow.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "From 4 × 4 to 12 × 12.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "4 × 4",
+        "role": "label",
+        "previewPx": 16.12,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "11 × 11",
+        "role": "label",
+        "previewPx": 16.12,
+        "minimum": 16,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "frame": "ipad/04-every-mood",
+    "text": [
+      {
+        "text": "sortue",
+        "role": "label",
+        "previewPx": 16.43,
+        "minimum": 16,
+        "pass": true
+      },
+      {
+        "text": "A palette for",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "every mood.",
+        "role": "headline",
+        "previewPx": 29.77,
+        "minimum": 28,
+        "pass": true
+      },
+      {
+        "text": "A fresh blend.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      },
+      {
+        "text": "With every puzzle.",
+        "role": "support",
+        "previewPx": 18.29,
+        "minimum": 18,
+        "pass": true
+      }
+    ]
+  }
+]

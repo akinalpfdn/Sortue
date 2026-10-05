@@ -1,0 +1,50 @@
+[
+  {
+    "file": "iphone/01-color-and-calm.png",
+    "width": 1320,
+    "height": 2868,
+    "mode": "RGB"
+  },
+  {
+    "file": "iphone/02-every-shade.png",
+    "width": 1320,
+    "height": 2868,
+    "mode": "RGB"
+  },
+  {
+    "file": "iphone/03-start-small.png",
+    "width": 1320,
+    "height": 2868,
+    "mode": "RGB"
+  },
+  {
+    "file": "iphone/04-every-mood.png",
+    "width": 1320,
+    "height": 2868,
+    "mode": "RGB"
+  },
+  {
+    "file": "ipad/01-color-and-calm.png",
+    "width": 2064,
+    "height": 2752,
+    "mode": "RGB"
+  },
+  {
+    "file": "ipad/02-every-shade.png",
+    "width": 2064,
+    "height": 2752,
+    "mode": "RGB"
+  },
+  {
+    "file": "ipad/03-start-small.png",
+    "width": 2064,
+    "height": 2752,
+    "mode": "RGB"
+  },
+  {
+    "file": "ipad/04-every-mood.png",
+    "width": 2064,
+    "height": 2752,
+    "mode": "RGB"
+  }
+]
