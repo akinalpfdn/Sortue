@@ -1,0 +1,158 @@
+{
+  "ar-SA": {
+    "iphone69": "../appstore/ar-SA/iphone",
+    "ipad13": "../appstore/ar-SA/ipad"
+  },
+  "ca": {
+    "iphone69": "../appstore/ca/iphone",
+    "ipad13": "../appstore/ca/ipad"
+  },
+  "cs": {
+    "iphone69": "../appstore/cs/iphone",
+    "ipad13": "../appstore/cs/ipad"
+  },
+  "da": {
+    "iphone69": "../appstore/da/iphone",
+    "ipad13": "../appstore/da/ipad"
+  },
+  "de-DE": {
+    "iphone69": "../appstore/de-DE/iphone",
+    "ipad13": "../appstore/de-DE/ipad"
+  },
+  "el": {
+    "iphone69": "../appstore/el/iphone",
+    "ipad13": "../appstore/el/ipad"
+  },
+  "en-AU": {
+    "iphone69": "../appstore/en/iphone",
+    "ipad13": "../appstore/en/ipad"
+  },
+  "en-CA": {
+    "iphone69": "../appstore/en/iphone",
+    "ipad13": "../appstore/en/ipad"
+  },
+  "en-GB": {
+    "iphone69": "../appstore/en/iphone",
+    "ipad13": "../appstore/en/ipad"
+  },
+  "en-US": {
+    "iphone69": "../appstore/en/iphone",
+    "ipad13": "../appstore/en/ipad"
+  },
+  "es-ES": {
+    "iphone69": "../appstore/es-ES/iphone",
+    "ipad13": "../appstore/es-ES/ipad"
+  },
+  "es-MX": {
+    "iphone69": "../appstore/es-MX/iphone",
+    "ipad13": "../appstore/es-MX/ipad"
+  },
+  "fi": {
+    "iphone69": "../appstore/fi/iphone",
+    "ipad13": "../appstore/fi/ipad"
+  },
+  "fr-CA": {
+    "iphone69": "../appstore/fr-CA/iphone",
+    "ipad13": "../appstore/fr-CA/ipad"
+  },
+  "fr-FR": {
+    "iphone69": "../appstore/fr-FR/iphone",
+    "ipad13": "../appstore/fr-FR/ipad"
+  },
+  "he": {
+    "iphone69": "../appstore/he/iphone",
+    "ipad13": "../appstore/he/ipad"
+  },
+  "hi": {
+    "iphone69": "../appstore/hi/iphone",
+    "ipad13": "../appstore/hi/ipad"
+  },
+  "hr": {
+    "iphone69": "../appstore/hr/iphone",
+    "ipad13": "../appstore/hr/ipad"
+  },
+  "hu": {
+    "iphone69": "../appstore/hu/iphone",
+    "ipad13": "../appstore/hu/ipad"
+  },
+  "id": {
+    "iphone69": "../appstore/id/iphone",
+    "ipad13": "../appstore/id/ipad"
+  },
+  "it": {
+    "iphone69": "../appstore/it/iphone",
+    "ipad13": "../appstore/it/ipad"
+  },
+  "ja": {
+    "iphone69": "../appstore/ja/iphone",
+    "ipad13": "../appstore/ja/ipad"
+  },
+  "ko": {
+    "iphone69": "../appstore/ko/iphone",
+    "ipad13": "../appstore/ko/ipad"
+  },
+  "ms": {
+    "iphone69": "../appstore/ms/iphone",
+    "ipad13": "../appstore/ms/ipad"
+  },
+  "nl-NL": {
+    "iphone69": "../appstore/nl-NL/iphone",
+    "ipad13": "../appstore/nl-NL/ipad"
+  },
+  "no": {
+    "iphone69": "../appstore/no/iphone",
+    "ipad13": "../appstore/no/ipad"
+  },
+  "pl": {
+    "iphone69": "../appstore/pl/iphone",
+    "ipad13": "../appstore/pl/ipad"
+  },
+  "pt-BR": {
+    "iphone69": "../appstore/pt-BR/iphone",
+    "ipad13": "../appstore/pt-BR/ipad"
+  },
+  "pt-PT": {
+    "iphone69": "../appstore/pt-PT/iphone",
+    "ipad13": "../appstore/pt-PT/ipad"
+  },
+  "ro": {
+    "iphone69": "../appstore/ro/iphone",
+    "ipad13": "../appstore/ro/ipad"
+  },
+  "ru": {
+    "iphone69": "../appstore/ru/iphone",
+    "ipad13": "../appstore/ru/ipad"
+  },
+  "sk": {
+    "iphone69": "../appstore/sk/iphone",
+    "ipad13": "../appstore/sk/ipad"
+  },
+  "sv": {
+    "iphone69": "../appstore/sv/iphone",
+    "ipad13": "../appstore/sv/ipad"
+  },
+  "th": {
+    "iphone69": "../appstore/th/iphone",
+    "ipad13": "../appstore/th/ipad"
+  },
+  "tr": {
+    "iphone69": "../appstore/tr/iphone",
+    "ipad13": "../appstore/tr/ipad"
+  },
+  "uk": {
+    "iphone69": "../appstore/uk/iphone",
+    "ipad13": "../appstore/uk/ipad"
+  },
+  "vi": {
+    "iphone69": "../appstore/vi/iphone",
+    "ipad13": "../appstore/vi/ipad"
+  },
+  "zh-Hans": {
+    "iphone69": "../appstore/zh-Hans/iphone",
+    "ipad13": "../appstore/zh-Hans/ipad"
+  },
+  "zh-Hant": {
+    "iphone69": "../appstore/zh-Hant/iphone",
+    "ipad13": "../appstore/zh-Hant/ipad"
+  }
+}

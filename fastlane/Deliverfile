@@ -1,0 +1,20 @@
+# Upload store metadata and screenshots. Run from the repo root:
+#   python3 fastlane/prepare.py && fastlane deliver --force
+# Uploads text and screenshots only: no binary, no submission.
+
+app_identifier("com.akinalpfdn.Sortue")
+app_version("2.0")   # must be the version that is editable ("Prepare for Submission") in App Store Connect
+
+# ~/.appstoreconnect/api_key.json holds key_id, issuer_id and the path of the .p8 (kept outside repos).
+# api_key(filepath:) makes fastlane read the key at runtime; api_key_path would require the key content in the JSON.
+require "json"
+api_key(JSON.parse(File.read(File.expand_path(ENV["ASC_API_KEY_JSON"] || "~/.appstoreconnect/api_key.json"))))
+
+metadata_path("./fastlane/metadata")
+screenshots_path("./fastlane/screenshots")
+overwrite_screenshots(true)   # deletes ALL existing screenshots of this version, every device size
+
+skip_binary_upload(true)
+submit_for_review(false)
+run_precheck_before_submit(false)
+precheck_include_in_app_purchases(false)
