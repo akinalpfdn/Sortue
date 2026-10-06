@@ -3,5 +3,8 @@
   "privacy_url": "https://github.com/akinalpfdn/Sortue/blob/main/PrivacyPolicy_EN.md",
   "marketing_url": "",
   "primary_category": "GAMES",
-  "secondary_category": ""
+  "secondary_category": "LIFESTYLE",
+  "privacy_url_overrides": {
+    "tr": "https://github.com/akinalpfdn/Sortue/blob/main/PrivacyPolicy_TR.md"
+  }
 }

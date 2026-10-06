@@ -65,6 +65,7 @@ def main() -> None:
         for name, text in fields.items():
             (folder / name).write_text(text, encoding="utf-8")
         for name, url in urls.items():
+            url = config.get(f"{name}_overrides", {}).get(locale, url)
             if url:
                 (folder / f"{name}.txt").write_text(url, encoding="utf-8")
         print(f"{locale:8} name {len(fields['name.txt']):2}  subtitle {len(fields['subtitle.txt']):2}  keywords {len(fields['keywords.txt']):3}")
