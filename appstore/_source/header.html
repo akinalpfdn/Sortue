@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Sortue — universal creative asset</title>
+<style>
+/* Universal App Store creative asset (product page header + search results), 16:9, exported at 2x = 5244 × 2950.
+   No text: one file serves every locale. Boards stay inside the middle of the canvas because Apple does not
+   document the safe zone for the header overlay. Colors match en/listing.html. */
+*{box-sizing:border-box}html,body{margin:0;overflow:hidden}
+.art{width:2622px;height:1475px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 8% 30%,#f4dced 0,transparent 50%),radial-gradient(ellipse at 92% 85%,#d9eafd 0,transparent 55%),radial-gradient(ellipse at 50% 110%,#dcf0f7 0,transparent 45%),#fdfbff}
+.orb{position:absolute;border-radius:120px;background:linear-gradient(135deg,#cf9edc66,#899ede40);width:520px;height:520px;transform:rotate(16deg)}
+.orb.a{left:-200px;top:-180px}.orb.b{right:-220px;bottom:-240px;width:640px;height:640px;border-radius:150px}
+.board{position:absolute;padding:34px;border:2px solid #fff;background:#fff;box-shadow:0 60px 120px #5c457f1f;border-radius:58px}
+.crop{position:relative;overflow:hidden;aspect-ratio:1;background:#fff;border-radius:22px}
+.crop img{position:absolute;display:block;max-width:none;height:auto}
+.main{width:1000px;left:811px;top:238px;z-index:3;transform:rotate(-3deg)}
+.left{width:720px;left:300px;top:520px;z-index:2;transform:rotate(-8deg)}
+.right{width:720px;right:300px;top:380px;z-index:1;transform:rotate(7deg)}
+/* 21:9 variant: same scene scaled into the shorter canvas. */
+.wide .art{height:1124px}.wide #visual{transform:translateY(-175px) scale(.76);transform-origin:1311px 737.5px}
+</style></head><body><main class="art"><div class="orb a"></div><div class="orb b"></div><div id="visual"></div></main>
+<script>
+if(new URLSearchParams(location.search).get('ratio')==='21')document.body.className='wide';
+const crops={'iphone-violet':{w:1206,x:96,y:777,size:1014},'iphone-blue':{w:1206,x:96,y:777,size:1014},'iphone-win':{w:1206,x:96,y:777,size:1014},'ipad-teal':{w:1640,x:64,y:375,size:1512},'ipad-multi':{w:1640,x:64,y:375,size:1512},'ipad-green':{w:1640,x:64,y:375,size:1512}};
+const crop=k=>{const c=crops[k];return `<div class="crop"><img src="../en/assets/${k}.png" alt="" style="width:${c.w/c.size*100}%;left:${-c.x/c.size*100}%;top:${-c.y/c.size*100}%"></div>`};
+const board=(k,cls)=>`<div class="board ${cls}">${crop(k)}</div>`;
+document.querySelector('#visual').innerHTML=board('iphone-blue','left')+board('ipad-teal','main')+board('ipad-green','right');
+</script></body></html>

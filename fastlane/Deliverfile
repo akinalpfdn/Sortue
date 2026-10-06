@@ -3,7 +3,7 @@
 # Uploads text and screenshots only: no binary, no submission.
 
 app_identifier("com.akinalpfdn.Sortue")
-app_version("2.0")   # must be the version that is editable ("Prepare for Submission") in App Store Connect
+app_version("2.1.0") # must be the version that is editable ("Prepare for Submission") in App Store Connect
 
 # ~/.appstoreconnect/api_key.json holds key_id, issuer_id and the path of the .p8 (kept outside repos).
 # api_key(filepath:) makes fastlane read the key at runtime; api_key_path would require the key content in the JSON.
